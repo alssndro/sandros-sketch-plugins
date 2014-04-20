@@ -1,0 +1,42 @@
+// Unlocks all layer groups/layers/slices on all artboards across all pages
+
+// Get all pages in the document
+var pages = [doc pages]
+
+var pages_loop = [pages objectEnumerator]
+
+while (page = [pages_loop nextObject]) {
+  unlockArtboards([page artboards])
+}
+
+function unlockArtboards(artboards) {
+  var artboards_loop = [artboards objectEnumerator]
+
+  while (artboard = [artboards_loop nextObject]) {
+    unlockAllLayers([artboard layers])
+  }
+}
+
+
+// Recursively traverses and unlocks a tree of layers, since layers can be nested
+// in groups
+function unlockAllLayers(layers) {
+
+  // For some incredibly strange reason using an objectEnumerator does not
+  // work with a Layers array, hence the for loop
+  for (var i = 0; i < [layers length]; i++) {
+    var layer = layers[i]
+
+    if ([layer isMemberOfClass:[MSLayerGroup class]]) {
+      // LayerGroup itself may also be locked
+      [layer setIsLocked: false]
+
+      // Also unlock all the child layers/groups
+      unlockAllLayers([layer layers])
+    }
+    else {
+      // Must be a singular layer, so unlock
+      [layer setIsLocked: false]
+    }
+  }
+}

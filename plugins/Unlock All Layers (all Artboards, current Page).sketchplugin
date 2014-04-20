@@ -5,12 +5,12 @@ var artboards = [doc artboards]
 var artboards_loop = [artboards objectEnumerator]
 
 while (artboard = [artboards_loop nextObject]) {
-  unlockLayers([artboard layers])
+  unlockAllLayers([artboard layers])
 }
 
 // Recursively traverses and unlocks a tree of layers, since layers can be nested
 // in groups
-function unlockLayers(layers) {
+function unlockAllLayers(layers) {
 
   // For some incredibly strange reason using an objectEnumerator does not
   // work with a Layers array, hence the for loop
@@ -22,7 +22,7 @@ function unlockLayers(layers) {
       [layer setIsLocked: false]
 
       // Also unlock all the child layers/groups
-      toggleLayersLock([layer layers])
+      unlockAllLayers([layer layers])
     }
     else {
       // Must be a singular layer, so unlock
