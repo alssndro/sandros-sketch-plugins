@@ -1,4 +1,3 @@
-// # Toggle Lock Everything
 // Toggles lock on every layer on every artboard
 var artboards = [doc artboards]
 var no_of_artboards = [artboards length]
