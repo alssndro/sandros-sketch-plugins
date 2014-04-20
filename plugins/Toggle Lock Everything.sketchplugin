@@ -1,0 +1,17 @@
+// # Toggle Lock Everything
+// Toggles lock on every layer on every artboard
+var artboards = [doc artboards]
+var no_of_artboards = [artboards length]
+
+for (i=0; i < no_of_artboards; i++) {
+  var artboard = artboards[i]
+  var layers =  [artboard layers]
+  toggleLayerLock(layers)
+}
+
+function toggleLayerLock(layers) {
+  for (y=0; y < [layers length]; y++) {
+    var layer = layers[y]
+    [layer setIsLocked:![layer isLocked]]
+  }
+}
