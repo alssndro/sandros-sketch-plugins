@@ -6,7 +6,7 @@ If you have any suggestions for plugin ideas then feel free to open an issue :)
 
 ### How do I install a plugin?
 
-Simply drag and drop the .sublimeplugin file onto the Sketch app icon
+Double-click the .sublimeplugin file, or alternatively drag and drop the file onto the Sketch app icon. This will automatically copy the plugin to your Sketch plugins folder.
 
 ### How do I use a plugin as a keyboard shortcut?
 
