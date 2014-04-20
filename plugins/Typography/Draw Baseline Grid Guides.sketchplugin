@@ -1,0 +1,30 @@
+// Draws guides at given intervals, up to the height of the current artboard
+// Guides start at position 0
+var interval = [doc askForUserInput:"Enter interval: " initialValue:""]
+
+var current_page = [doc currentPage]
+var currentArtboard = [current_page currentArtboard]
+
+removeGuides([currentArtboard verticalRulerData])
+
+drawBaselineGrid(currentArtboard, interval)
+
+function drawBaselineGrid(artboard, baseline) {
+  var artboard_height = [[artboard frame] height]
+  var no_of_guides = Math.floor(artboard_height / baseline)
+  var vertical_ruler = [artboard verticalRulerData]
+
+  for(var i = 0; i < artboard_height; i += baseline) {
+    drawGuide(vertical_ruler, i)
+  }  
+}
+
+function drawGuide(ruler, position) {
+  [ruler addGuideWithValue: position]
+}
+
+function removeGuides(ruler) {
+  for(var i = [ruler numberOfGuides]; i > 0; i--) {
+    log([ruler removeGuideAtIndex: 0])
+  }
+}
