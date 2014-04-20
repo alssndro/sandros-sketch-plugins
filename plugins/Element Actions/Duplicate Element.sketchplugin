@@ -1,0 +1,12 @@
+// Duplicates the currently selected element. The duplciated element has the same
+// as the original
+
+if([selection count] != 0){
+  var loop = [selection objectEnumerator]
+  while (item = [loop nextObject]) {
+    [item duplicate]
+  }
+} else {
+  var app = [NSApplication sharedApplication];
+  [app displayDialog:"Nothing selected to duplicate" withTitle:"Error"]
+}
