@@ -1,0 +1,98 @@
+// Resize shape to baseline grid
+// Todo Check there is a baseline
+
+#import 'alessndro_library.js'
+alessndro.common.sayHello("Francesco Totti")
+
+// First check the current artboard has a baseline
+if ([[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] < 2) {
+  log("Only found " + [[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] + " guides")
+}
+else {
+  var BASELINE_INTERVAL = getBaselineInterval()
+  resizeAllSelectedLayers()
+}
+
+function resizeAllSelectedLayers() {
+  if([selection count] != 0) {
+    var loop = [selection objectEnumerator]
+    while (item = [loop nextObject]) {
+      resizeToBaselineGrid(item)
+      positionOnBaseline(item)
+    }
+  } 
+  else {
+    var app = [NSApplication sharedApplication]
+    [app displayDialog:"Nothing selected to duplicate" withTitle:"Error"]
+  }
+}
+
+function resizeToBaselineGrid(item) {
+  var item_height = [[item frame] height]
+  log(BASELINE_INTERVAL)
+  var new_height_multiplier = calculateCoefficient(item_height)
+
+  // Text layer's need to be treated differently from shapes
+  // Instead of height we set the line spacing
+  if ([item isMemberOfClass: MSTextLayer])) {
+    setTextLineSpacing(item)
+  }
+  else {
+    // Have to do it this way since there is no method to set the height directly
+    [[item frame] subtractHeight: item_height - 1]
+    [[item frame] addHeight: (BASELINE_INTERVAL * new_height_multiplier - 1)]
+  }
+}
+
+function positionOnBaseline() {
+  var item_y_pos = [[item frame] y]
+  
+  var new_y_pos_multiplier = calculateCoefficient(item_y_pos)
+
+  // Only position non-text layers
+  if ([item isMemberOfClass: MSTextLayer] != 1) {
+    // Have to do it this way since there is no method to set the position directly
+    [[item frame] subtractY: item_y_pos - 1]
+    [[item frame] addY: (BASELINE_INTERVAL * new_y_pos_multiplier - 1)]
+  }
+}
+
+// Set a text layer's line spacing so that it aligns to the current baseline
+// grid
+function setTextLineSpacing(text_layer) {
+  if ([text_layer fontSize] > BASELINE_INTERVAL) {
+    [text_layer setLineSpacing: (Math.ceil([text_layer fontSize] / BASELINE_INTERVAL) * BASELINE_INTERVAL)]
+  } else {
+    [text_layer setLineSpacing: BASELINE_INTERVAL]
+  }
+}
+
+// Calculates and returns the closest possible coefficient of the value
+// passed into the function (with regards to the current baseline grid)
+// e.g if current baseline grid's intervals are 20px, and
+// you pass 24, this function will return 1. If you pass 35,
+// it will return 2
+function calculateCoefficient(value) {
+  var coefficient
+  log(BASELINE_INTERVAL)
+  if (value % BASELINE_INTERVAL === 0) {
+    coefficient = value / BASELINE_INTERVAL
+  }
+  else {
+    if (value % BASELINE_INTERVAL > (BASELINE_INTERVAL / 2)) {
+      coefficient = Math.ceil(value / BASELINE_INTERVAL)
+    }
+    else {
+      coefficient = Math.floor(value / BASELINE_INTERVAL)
+    }
+  }
+  return coefficient === 0 ? 1 : coefficient
+}
+
+// Calculates baseline interval based on the first horizontal two guides added
+function getBaselineInterval() {
+  var artboard_ruler = [[[doc currentPage] currentArtboard] verticalRulerData]
+  var baseline = [artboard_ruler guideAtIndex: 1] - [artboard_ruler guideAtIndex: 0]
+
+  return [artboard_ruler guideAtIndex: 1]
+}

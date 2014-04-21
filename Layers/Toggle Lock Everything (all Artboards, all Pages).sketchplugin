@@ -1,3 +1,4 @@
+#import 'alessndro_library.js'
 // Unlocks all layer groups/layers/slices on all artboards across all pages
 
 // Get all pages in the document
@@ -21,22 +22,8 @@ function unlockArtboards(artboards) {
 // Recursively traverses and unlocks a tree of layers, since layers can be nested
 // in groups
 function toggleLayersLock(layers) {
-
-  // For some incredibly strange reason using an objectEnumerator does not
-  // work with a Layers array, hence the for loop
-  for (var i = 0; i < [layers length]; i++) {
-    var layer = layers[i]
-
-    if ([layer isMemberOfClass:[MSLayerGroup class]]) {
-      // LayerGroup itself may also be locked
-      [layer setIsLocked:![layer isLocked]]
-
-      // Also unlock all the child layers/groups
-      toggleLayersLock([layer layers])
-    }
-    else {
-      // Must be a singular layer, so unlock
-      [layer setIsLocked:![layer isLocked]]
-    }
-  }
+  alessndro.common.processAllLayers(layers, function(layer) {
+    [layer setIsLocked:![layer isLocked]]
+  })
 }
+

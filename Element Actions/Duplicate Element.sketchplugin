@@ -1,5 +1,5 @@
-// Duplicates the currently selected element. The duplciated element has the same
-// as the original
+// Duplicates the currently selected elements. The duplicated elements have the
+// same name as the original
 
 if([selection count] != 0){
   var loop = [selection objectEnumerator]

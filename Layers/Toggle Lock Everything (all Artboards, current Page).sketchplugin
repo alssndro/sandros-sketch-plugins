@@ -1,0 +1,19 @@
+#import 'alessndro_library.js'
+// Toggles lock on every layer/layer group/slice, on every artboard
+// on the current page
+
+var artboards = [doc artboards]
+
+var artboards_loop = [artboards objectEnumerator]
+
+while (artboard = [artboards_loop nextObject]) {
+  toggleLayersLock([artboard layers])
+}
+
+// Recursively traverses and unlocks a tree of layers, since layers can be nested
+// in groups
+function toggleLayersLock(layers) {
+  alessndro.common.processAllLayers(layers, function(layer) {
+    [layer setIsLocked:![layer isLocked]]
+  })
+}
