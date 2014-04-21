@@ -11,6 +11,10 @@ Warning: **Always** save often when using any plugins. I have noticed that assig
 keyboard shortcut and spamming it is a great way to make Sketch crash. So be careful when using a plugin
 that you expect to use multiple times over a very short period of time (i.e. four times a second)
 
+- [Installation](#Installation)
+- [Compatibility](#Compatibility)
+- [Plugin Previews](#Plugin Previews)
+
 ## Installation
 
 To install all plugins, [download](https://github.com/alessndro/sketch-plugins/zipball/master) them all first, unzip the archive, and place the folder contents in the root of your Sketch Plugins directory ``~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application Support/sketch/Plugins``
@@ -21,7 +25,7 @@ Then, download your selected plugins and double-click the file, or alternatively
 
 Further instructions can be found on the official [Sketch Plugin help page](http://bohemiancoding.com/sketch/support/developer/01-introduction/01.html).
 
-## Compatbility
+## Compatibility
 
 All plugins are developed and tested in Sketch 3, however, the official Sketch Plugin documentation
 states that [the API is backwards compatible with Sketch 2.](http://bohemiancoding.com/sketch/support/developer/03-reference/00.html)
