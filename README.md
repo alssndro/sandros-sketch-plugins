@@ -13,10 +13,13 @@ that you expect to use multiple times over a very short period of time (i.e. fou
 
 ### How do I install a plugin?
 
-You will need to place the library file "alessndro_library.js" in your Plugins directory first. All plugins
-rely on the functions provided by it.
+To install all plugins, [download](https://github.com/alessndro/sketch-plugins/zipball/master) them all first, unzip the archive, and place the folder contents in the root of your Sketch Plugins directory ``~/Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application Support/sketch/Plugins``
 
-Double-click the .sublimeplugin file, or alternatively, drag and drop the file onto the Sketch app icon. This will automatically copy the plugin to your Sketch plugins folder.
+To install only a selection of plugins, you will first need to download and place the library file [alessndro_library.js](alessndro_library.js) in the root of your Sketch Plugins directory. This is very important as all plugins rely on the functionality provided by the library.
+
+Then, download your selected plugins and double-click the file, or alternatively, drag and drop the file onto the Sketch app icon. This will automatically copy the plugin to your Sketch plugins folder.
+
+Further instructions can be found on the official [Sketch Plugin help page](http://bohemiancoding.com/sketch/support/developer/01-introduction/01.html).
 
 ### How do I use a plugin as a keyboard shortcut?
 
