@@ -1,0 +1,28 @@
+// Aligns the top of the current selection to the previous baseline grid line
+
+#import 'alessndro_library.js'
+
+// Check the current artboard has a baseline
+if ([[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] < 2) {
+  log("Only found " + [[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] + " guides")
+}
+else {
+  repositionSelectedLayers()
+}
+
+function repositionSelectedLayers() {
+  if([selection count] != 0) {
+    var loop = [selection objectEnumerator]
+    while (item = [loop nextObject]) {
+      // Ignore text layers since can't align them to baseline without knowing
+      // the x-height
+      if ([item isMemberOfClass: MSTextLayer] != 1) {
+        alessndro.alignment.positionTopOnPreviousBaseline(item)
+      }
+    }
+  } 
+  else {
+    var app = [NSApplication sharedApplication]
+    [app displayDialog:"Nothing selected to align" withTitle:"Error"]
+  }
+}

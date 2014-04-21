@@ -1,0 +1,64 @@
+// Resize shape to baseline grid
+// Todo Check there is a baseline
+
+#import 'alessndro_library.js'
+
+// First check the current artboard has a baseline
+if ([[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] < 2) {
+  log("Only found " + [[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] + " guides")
+}
+else {
+  var BASELINE_INTERVAL = alessndro.common.getArtboardBaselineInterval()
+  resizeAllSelectedLayers()
+}
+
+function resizeAllSelectedLayers() {
+  if([selection count] != 0) {
+    var loop = [selection objectEnumerator]
+    while (item = [loop nextObject]) {
+      resizeToBaselineGrid(item)
+      positionOnBaseline(item)
+    }
+  } 
+  else {
+    var app = [NSApplication sharedApplication]
+    [app displayDialog:"Nothing selected to duplicate" withTitle:"Error"]
+  }
+}
+
+function resizeToBaselineGrid(item) {
+  var item_height = [[item frame] height]
+  log("Baseline " + BASELINE_INTERVAL)
+  var new_height_multiplier = alessndro.common.calculateCoefficient(item_height)
+
+  // Text layer's need to be treated differently from shapes
+  // Instead of height we set the line spacing
+  if ([item isMemberOfClass: MSTextLayer]) {
+    setTextLineSpacing(item)
+  }
+  else {
+    var new_height = BASELINE_INTERVAL * new_height_multiplier
+    alessndro.common.resizeHeightTo(item, new_height)
+  }
+}
+
+function positionOnBaseline(item) {
+  var item_y_pos = [[item frame] y]
+  
+  var new_y_pos_multiplier = alessndro.common.calculateCoefficient(item_y_pos)
+
+  // Only position non-text layers
+  if ([item isMemberOfClass: MSTextLayer] != 1) {
+    alessndro.common.moveToYPosition(item, BASELINE_INTERVAL * new_y_pos_multiplier)
+  }
+}
+
+// Set a text layer's line spacing so that it aligns to the current baseline
+// grid
+function setTextLineSpacing(text_layer) {
+  if ([text_layer fontSize] > BASELINE_INTERVAL) {
+    [text_layer setLineSpacing: (Math.ceil([text_layer fontSize] / BASELINE_INTERVAL) * BASELINE_INTERVAL)]
+  } else {
+    [text_layer setLineSpacing: BASELINE_INTERVAL]
+  }
+}
