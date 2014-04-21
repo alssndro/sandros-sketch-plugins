@@ -1,6 +1,8 @@
 // Draws guides at given intervals, up to the height of the current artboard
 // Guides start at position 0
-var interval = [doc askForUserInput:"Enter interval: " initialValue:""]
+
+// Ask user for interval, defaulting to 20 if user presses cancel or enters nothing
+var interval = [doc askForUserInput:"Enter interval: " initialValue:""] || 20
 
 var current_page = [doc currentPage]
 var currentArtboard = [current_page currentArtboard]

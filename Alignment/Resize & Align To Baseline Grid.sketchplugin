@@ -1,6 +1,5 @@
 #import 'alessndro_library.js'
-
-// Resizes selected elements to fit the Artboards baseline grid
+// Resizes and positions selected elements to fit the Artboard's baseline grid
 
 // Check the current artboard has a baseline
 if ([[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] < 2) {
@@ -21,6 +20,7 @@ function resizeAllSelectedLayers() {
       }
       else {
         alessndro.size.resizeToBaselineGrid(item)
+        alessndro.alignment.positionTopOnBaseline(item)
       }
     }
   } 
