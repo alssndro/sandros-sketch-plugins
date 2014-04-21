@@ -23,6 +23,11 @@ Then, download your selected plugins and double-click the file, or alternatively
 
 Further instructions can be found on the official [Sketch Plugin help page](http://bohemiancoding.com/sketch/support/developer/01-introduction/01.html).
 
+## Compatbility
+
+All plugins are developed and tested in Sketch 3, however, the official Sketch Plugin documentation
+states that [the API is backwards compatible with Sketch 2.](http://bohemiancoding.com/sketch/support/developer/03-reference/00.html)
+
 ## How do I use a plugin as a keyboard shortcut?
 
 First install the plugin. Then in OS X navigate to Settings > Keyboard > Shortcuts. In the left hand menu select "App Shortcuts", select "All Applications" in the right hand menu and click the plus icon.
@@ -76,7 +81,7 @@ For text layers it sets the line height to fit the Baseline grid instead.
 
 **This does not align the the text to the Baseline Grid (the gif is a bit deceptive). This is
 because there is no way to calculate the x-height of the text. After running the plugin you
-will have to move the text layer to fit on the baseline manually**
+will have to move the text layer to fit on the baseline manually.**
 
 ![Set Text to Baseline Grid](plugin previews/set text to baseline grid.gif)
 
