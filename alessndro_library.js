@@ -56,8 +56,28 @@ alessndro.size = {
     // Have to do it this way since there is no method to set the height directly
     [[item frame] subtractHeight: current_height - 1]
     [[item frame] addHeight: new_size - 1]
+  },
+  resizeToBaselineGrid: function(item) {
+    var item_height = [[item frame] height]
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval()
+    var new_height_coefficient = alessndro.common.calculateCoefficient(item_height)
+    var new_height = baseline_interval * new_height_coefficient
+    alessndro.size.resizeHeightTo(item, new_height)
   }
-}
+};
+
+alessndro.text = {
+  // Set a text layer's line spacing so that it aligns to the current baseline
+  // grid
+  setLineSpacingToBaselineGrid: function(text_layer) {
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval()
+    if ([text_layer fontSize] > baseline_interval) {
+      [text_layer setLineSpacing: (Math.ceil([text_layer fontSize] / baseline_interval) * baseline_interval)]
+    } else {
+      [text_layer setLineSpacing: baseline_interval]
+    }
+  }
+};
 
 alessndro.alignment = {
   moveToYPosition: function(item, new_y_pos) {
@@ -126,4 +146,4 @@ alessndro.alignment = {
     var new_y_pos = ((new_y_pos_coefficient * baseline_interval) - item_height) - baseline_interval
     alessndro.alignment.moveToYPosition(item, new_y_pos)
   }
-}
+};
