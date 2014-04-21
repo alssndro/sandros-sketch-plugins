@@ -42,6 +42,10 @@ alessndro.common = {
       }
     }
     return coefficient === 0 ? 1 : coefficient
+  },
+  alert: function(title, message) {
+    var app = [NSApplication sharedApplication]
+    [app displayDialog: message withTitle: title]
   }
 };
 

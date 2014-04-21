@@ -4,7 +4,7 @@
 
 // Check the current artboard has a baseline
 if ([[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] < 2) {
-  log("Only found " + [[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] + " guides")
+  alessndro.common.alert("Error", "There needs to be at least 2 vertical guides on the current Artboard in order to calculate your baseline grid interval. There are currently only " + [[[[doc currentPage] currentArtboard] verticalRulerData] numberOfGuides] + " vertical guides.")
 }
 else {
   repositionSelectedLayers()
@@ -22,7 +22,6 @@ function repositionSelectedLayers() {
     }
   } 
   else {
-    var app = [NSApplication sharedApplication]
-    [app displayDialog:"Nothing selected to align" withTitle:"Error"]
+    alessndro.common.alert("Error", "Nothing selected to align")
   }
 }
