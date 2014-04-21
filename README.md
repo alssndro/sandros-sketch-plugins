@@ -11,9 +11,9 @@ Warning: **Always** save often when using any plugins. I have noticed that assig
 keyboard shortcut and spamming it is a great way to make Sketch crash. So be careful when using a plugin
 that you expect to use multiple times over a very short period of time (i.e. four times a second)
 
-- [Installation](#Installation)
-- [Compatibility](#Compatibility)
-- [Plugin Previews](#Plugin Previews)
+- [Installation](#installation)
+- [Compatibility](#compatibility)
+- [Plugin Previews](#plugin-previews)
 
 ## Installation
 
