@@ -1,5 +1,7 @@
 ## Sketch Plugins
 
+** This is a very new repository and these plugins are changing very rapidly! Check back often to make sure you have the latest versions since I've likely fixed a lot of bugs** 
+
 A random assortment of Sketch plugins.
 
 I have heavily commented these plugins so that others can learn (and also to refresh
