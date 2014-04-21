@@ -39,7 +39,7 @@ A new menu will appear allowing you to select Sketch as the Application, enter t
 
 ## Plugin Previews
 
-### Alignment
+## Alignment
 
 All of these plugins revolve around sizing/aligning elements to a Baseline Grid.
 
@@ -108,7 +108,7 @@ Also works for text larger than the interval of the Baseline Grid:
 
 ### Align Top to Baseline Grid
 
-Aligns the bottom of the currently selected elements to the Baseline Grid of the current Artboard.
+Aligns the top of the currently selected elements to the Baseline Grid of the current Artboard.
 
 ![Align Top to Baseline Grid](plugin previews/align top to grid.gif)
 
@@ -162,9 +162,7 @@ Aligns the bottom of the currently selected elements to the previous Baseline Gr
 
 ----
 
-----
-
-### Typography
+## Typography
 
 ### Draw Typographic Scale
 
@@ -185,5 +183,4 @@ Same as above, except you can enter a custom ratio.
 ![Draw Typographic Scale](plugin previews/custom typographic scale.gif)
 
 ----
-
 
