@@ -13,6 +13,7 @@ that you expect to use multiple times over a very short period of time (i.e. fou
 
 - [Installation](#installation)
 - [Compatibility](#compatibility)
+- [Keyboard Shortucts](#how-do-i-use-a-plugin-as-a-keyboard-shortcut)
 - [Plugin Previews](#plugin-previews)
 
 ## Installation
@@ -57,11 +58,15 @@ Artboard, up to the height of the Artboard.
 
 ![Draw Baseline Grid Guides](plugin previews/draw baseline grid guides.gif)
 
+----
+
 ### Clear All Guides
 
 Clears all guides on the current Artboard.
 
 ![Clear All Guides](plugin previews/clear all guides.gif)
+
+----
 
 ### Resize and Align to Baseline Grid
 
@@ -69,15 +74,21 @@ Resizes and aligns currently selected elements to fit the Baseline Grid of the c
 
 ![Resize and Align to Baseline Grid](plugin previews/resize and align.gif)
 
+----
+
 Works on multiple elements too:
 
 ![Resize and Align mutliple to Baseline Grid](plugin previews/resize and align mutliple.gif)
+
+----
 
 ### Resize to Baseline Grid
 
 Resizes currently selected elements to fit the Baseline Grid of the current Artboard.
 
 ![Resize to Baseline Grid](plugin previews/resize.gif)
+
+----
 
 For text layers it sets the line height to fit the Baseline grid instead.
 
@@ -87,9 +98,13 @@ will have to move the text layer to fit on the baseline manually.**
 
 ![Set Text to Baseline Grid](plugin previews/set text to baseline grid.gif)
 
+----
+
 Also works for text larger than the interval of the Baseline Grid:
 
 ![Set Text to Baseline Grid](plugin previews/set large text to baseline grid.gif)
+
+----
 
 ### Align Top to Baseline Grid
 
@@ -97,11 +112,15 @@ Aligns the bottom of the currently selected elements to the Baseline Grid of the
 
 ![Align Top to Baseline Grid](plugin previews/align top to grid.gif)
 
+----
+
 ### Align Bottom to Baseline Grid
 
 Aligns the bottom of the currently selected elements to the Baseline Grid of the current Artboard.
 
 ![Align Bottom to Baseline Grid](plugin previews/align bottom to grid.gif)
+
+----
 
 ### Align Top to Next Baseline Grid
 
@@ -111,6 +130,8 @@ Aligns the top of the currently selected elements to the next Baseline Grid Line
 
 ![Align Top to Next Baseline Grid Line](plugin previews/align top to next grid line.gif)
 
+----
+
 ### Align Top to Previous Baseline Grid
 
 Aligns the top of the currently selected elements to the previous Baseline Grid Line of the current Artboard.
@@ -118,6 +139,8 @@ Aligns the top of the currently selected elements to the previous Baseline Grid 
 (plugin used multiple times in preview gif)
 
 ![Align Top to Previous Baseline Grid Line](plugin previews/align top to previous grid line.gif)
+
+----
 
 ### Align Bottom to Next Baseline Grid
 
@@ -127,6 +150,8 @@ Aligns the bottom of the currently selected elements to the next Baseline Grid L
 
 ![Align Bottom to Next Baseline Grid Line](plugin previews/align bottom to next grid line.gif)
 
+----
+
 ### Align Bottom to Previous Baseline Grid
 
 Aligns the bottom of the currently selected elements to the previous Baseline Grid Line of the current Artboard.
@@ -134,3 +159,31 @@ Aligns the bottom of the currently selected elements to the previous Baseline Gr
 (plugin used multiple times in preview gif)
 
 ![Align Bottom to Previous Baseline Grid Line](plugin previews/align bottom to previous grid line.gif)
+
+----
+
+----
+
+### Typography
+
+### Draw Typographic Scale
+
+First select a text layer to use as the base layer. This will be the base font size of your scale. 
+
+Then activate the plugin and choose the scale you would like to use. Scales are taken from [modularscale.com](http://modularscale.com).
+
+Six new text layers will be drawn according to the scale. If you need more than six, simply select the largest layer and use the plugin again.
+
+![Draw Typographic Scale](plugin previews/typographic scale.gif)
+
+----
+
+### Draw Custom Typographic Scale
+
+Same as above, except you can enter a custom ratio.
+
+![Draw Typographic Scale](plugin previews/custom typographic scale.gif)
+
+----
+
+

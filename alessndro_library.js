@@ -147,3 +147,56 @@ alessndro.alignment = {
     alessndro.alignment.moveToYPosition(item, new_y_pos)
   }
 };
+
+// Scales from http://modularscale.com/
+alessndro.type = {
+  scales: {
+    "15:16 – Minor Second": 1.067,
+    "8:9 – Major Second": 1.125,
+    "5:6 – Minor Third": 1.2,
+    "4:5 – Major Third": 1.25,
+    "3:4 – Perfect Fourth": 1.333,
+    "1:√2 – Aug. Fourth / Dim. Fifth": 1.414,
+    "2:3 – Perfect Fifth": 1.5,
+    "5:8 – Minor Sixth": 1.6,
+    "1:1.618 – Golden Section": 1.618,
+    "3:5 – Major Sixth": 1.667,
+    "9:16 – Minor Seventh": 1.778,
+    "8:15 – Major Seventh": 1.875,
+    "1:2 – Octave": 2,
+    "2:5 – Major Tenth": 2.5,
+    "3:8 – Major Eleventh": 2.667,
+    "1:3 – Major Twelfth": 3,
+    "1:4 – Double Octave": 4,
+  },
+  drawTypographicScale: function(base_text_layer, ratio, step) {
+    // Keep track of all text layers as we build the scale
+    var text_layers = []
+    text_layers.push(base_text_layer)
+
+    for (var i=0; i < step; i++) {
+      // The previous text layer in the overall scale
+      var previous_text_layer = text_layers[text_layers.length - 1]
+
+      // API does not support direct creation of text layers, so have
+      // to use duplication
+      var new_text_layer = [previous_text_layer duplicate]
+
+      var previous_font_size = [previous_text_layer fontSize]
+      [new_text_layer setFontSize: previous_font_size * ratio]
+
+      // Position the new text layer nicely
+      var previous_text_height = [previous_text_layer lineSpacing]
+      var new_text_y_pos = [[previous_text_layer frame] y] + previous_text_height
+      alessndro.alignment.moveToYPosition(new_text_layer, new_text_y_pos)
+
+      text_layers.push(new_text_layer)
+    }
+
+    // Prints the scale (for debugging)
+    // for(var i = 0; i < text_layers.length; i++) {
+    //   var current_text_layer = text_layers[i]
+    //   log(i + ": " + [current_text_layer fontSize])
+    // }
+  }
+}
