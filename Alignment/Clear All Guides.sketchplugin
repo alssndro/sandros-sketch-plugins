@@ -1,4 +1,4 @@
-// Removes all gudies on the current Artboard
+// Removes all guides on the current Artboard
 
 var current_page = [doc currentPage]
 var currentArtboard = [current_page currentArtboard]

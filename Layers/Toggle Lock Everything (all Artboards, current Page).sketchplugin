@@ -1,6 +1,7 @@
-#import 'alessndro_library.js'
 // Toggles lock on every layer/layer group/slice, on every artboard
 // on the current page
+
+#import 'alessndro_library.js'
 
 var artboards = [doc artboards]
 

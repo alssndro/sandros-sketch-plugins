@@ -1,4 +1,4 @@
-// Aligns the bottom of the current selection to the next baseline grid line
+// Aligns the bottom of the current selection to the previous baseline grid line
 
 #import 'alessndro_library.js'
 

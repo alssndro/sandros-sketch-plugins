@@ -1,5 +1,6 @@
-#import 'alessndro_library.js'
 // Unlocks all layer groups/layers/slices on all artboards on the current page
+
+#import 'alessndro_library.js'
 
 var artboards = [doc artboards]
 
