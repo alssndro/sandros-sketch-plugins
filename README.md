@@ -122,7 +122,7 @@ Aligns the bottom of the currently selected elements to the Baseline Grid of the
 
 ----
 
-### Align Top to Next Baseline Grid
+### Align Top to Next Baseline Grid Line
 
 Aligns the top of the currently selected elements to the next Baseline Grid Line of the current Artboard.
 
@@ -132,7 +132,7 @@ Aligns the top of the currently selected elements to the next Baseline Grid Line
 
 ----
 
-### Align Top to Previous Baseline Grid
+### Align Top to Previous Baseline Grid Line
 
 Aligns the top of the currently selected elements to the previous Baseline Grid Line of the current Artboard.
 
@@ -142,7 +142,7 @@ Aligns the top of the currently selected elements to the previous Baseline Grid 
 
 ----
 
-### Align Bottom to Next Baseline Grid
+### Align Bottom to Next Baseline Grid Line
 
 Aligns the bottom of the currently selected elements to the next Baseline Grid Line of the current Artboard.
 
@@ -152,7 +152,7 @@ Aligns the bottom of the currently selected elements to the next Baseline Grid L
 
 ----
 
-### Align Bottom to Previous Baseline Grid
+### Align Bottom to Previous Baseline Grid Line
 
 Aligns the bottom of the currently selected elements to the previous Baseline Grid Line of the current Artboard.
 
