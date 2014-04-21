@@ -33,12 +33,15 @@ A new menu will appear allowing you to select Sketch as the Application, enter t
 
 ### Alignment
 
-All of these plugins revolve around sizing/aligning elements to a baseline grid.
+All of these plugins revolve around sizing/aligning elements to a Baseline Grid.
 
 You will need to have at least 2 vertical guides on your Artboard in order for the
-plugin to calculate the intervals of your baseline grid.
+plugin to calculate the intervals of your Baseline Grid.
 
 The easiest way to establish a baseline grid is to use the ``Draw Baseline Grid Guides`` plugin.
+
+The plugins are quite clever in that they will align/resize elements to the closest
+grid line.
 
 ### Draw Baseline Grid Guides
 
@@ -53,9 +56,9 @@ Clears all guides on the current Artboard.
 
 ![Clear All Guides](plugin previews/clear all guides.gif)
 
-#### Resize and Align to Baseline Grid
+### Resize and Align to Baseline Grid
 
-Resizes and aligns currently selected elements to fit the Baseline Grid of the current Artboard
+Resizes and aligns currently selected elements to fit the Baseline Grid of the current Artboard.
 
 ![Resize and Align to Baseline Grid](plugin previews/resize and align.gif)
 
@@ -63,12 +66,64 @@ Works on multiple elements too:
 
 ![Resize and Align mutliple to Baseline Grid](plugin previews/resize and align mutliple.gif)
 
-#### Resize to Baseline Grid
+### Resize to Baseline Grid
 
-Resizes currently selected elements to fit the Baseline Grid of the current Artboard
+Resizes currently selected elements to fit the Baseline Grid of the current Artboard.
 
 ![Resize to Baseline Grid](plugin previews/resize.gif)
 
 For text layers it sets the line height to fit the Baseline grid instead.
 
+**This does not align the the text to the Baseline Grid (the gif is a bit deceptive). This is
+because there is no way to calculate the x-height of the text. After running the plugin you
+will have to move the text layer to fit on the baseline manually**
+
 ![Set Text to Baseline Grid](plugin previews/set text to baseline grid.gif)
+
+Also works for text larger than the interval of the Baseline Grid:
+
+![Set Text to Baseline Grid](plugin previews/set large text to baseline grid.gif)
+
+### Align Top to Baseline Grid
+
+Aligns the bottom of the currently selected elements to the Baseline Grid of the current Artboard.
+
+![Align Top to Baseline Grid](plugin previews/align top to grid.gif)
+
+### Align Bottom to Baseline Grid
+
+Aligns the bottom of the currently selected elements to the Baseline Grid of the current Artboard.
+
+![Align Bottom to Baseline Grid](plugin previews/align bottom to grid.gif)
+
+### Align Top to Next Baseline Grid
+
+Aligns the top of the currently selected elements to the next Baseline Grid Line of the current Artboard.
+
+(plugin used multiple times in preview gif)
+
+![Align Top to Next Baseline Grid Line](plugin previews/align top to next grid line.gif)
+
+### Align Top to Previous Baseline Grid
+
+Aligns the top of the currently selected elements to the previous Baseline Grid Line of the current Artboard.
+
+(plugin used multiple times in preview gif)
+
+![Align Top to Previous Baseline Grid Line](plugin previews/align top to previous grid line.gif)
+
+### Align Bottom to Next Baseline Grid
+
+Aligns the bottom of the currently selected elements to the next Baseline Grid Line of the current Artboard.
+
+(plugin used multiple times in preview gif)
+
+![Align Bottom to Next Baseline Grid Line](plugin previews/align bottom to next grid line.gif)
+
+### Align Bottom to Previous Baseline Grid
+
+Aligns the bottom of the currently selected elements to the previous Baseline Grid Line of the current Artboard.
+
+(plugin used multiple times in preview gif)
+
+![Align Bottom to Previous Baseline Grid Line](plugin previews/align bottom to previous grid line.gif)
