@@ -2,6 +2,11 @@
 
 A random assortment of Sketch plugins.
 
+- [Installation](#installation)
+- [Compatibility](#compatibility)
+- [Keyboard Shortucts](#how-do-i-use-a-plugin-as-a-keyboard-shortcut)
+- [Plugin Previews](#plugin-previews)
+
 I have heavily commented these plugins so that others can learn (and also to refresh
 my memory on how to write JSTalk in x weeks/months/years time!)
 
@@ -10,11 +15,6 @@ If you have any suggestions for plugin ideas then feel free to open an issue.
 Warning: **Always** save often when using any plugins. I have noticed that assigning a plugin to a
 keyboard shortcut and spamming it is a great way to make Sketch crash. So be careful when using a plugin
 that you expect to use multiple times over a very short period of time (i.e. four times a second)
-
-- [Installation](#installation)
-- [Compatibility](#compatibility)
-- [Keyboard Shortucts](#how-do-i-use-a-plugin-as-a-keyboard-shortcut)
-- [Plugin Previews](#plugin-previews)
 
 ## Installation
 
@@ -46,7 +46,7 @@ All of these plugins revolve around sizing/aligning elements to a Baseline Grid.
 You will need to have at least 2 vertical guides on your Artboard in order for the
 plugin to calculate the intervals of your Baseline Grid.
 
-The easiest way to establish a baseline grid is to use the ``Draw Baseline Grid Guides`` plugin.
+The easiest way to establish a Baseline Grid is to use the ``Draw Baseline Grid Guides`` plugin.
 
 The plugins are quite clever in that they will align/resize elements to the closest
 grid line.
