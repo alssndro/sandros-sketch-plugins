@@ -93,8 +93,7 @@ Resizes currently selected elements to fit the Baseline Grid of the current Artb
 For text layers it sets the line height to fit the Baseline grid instead.
 
 **This does not align the the text to the Baseline Grid (the gif is a bit deceptive). This is
-because there is no way to calculate the x-height of the text. After running the plugin you
-will have to move the text layer to fit on the baseline manually.**
+because the Sketch Plugin API does not (currently) allow for the retrieval of the baseline of the text itself. After running the plugin you will have to move the text layer to fit on the baseline manually.**
 
 ![Set Text to Baseline Grid](plugin previews/set text to baseline grid.gif)
 
@@ -172,6 +171,8 @@ Then activate the plugin and choose the scale you would like to use. Scales are 
 
 Six new text layers will be drawn according to the scale. If you need more than six, simply select the largest layer and use the plugin again.
 
+*Future Improvement: The plan is to create symbols instead of plain text layers once the Sketch Plugin API provides the ability to make new symbols.*
+
 ![Draw Typographic Scale](plugin previews/typographic scale.gif)
 
 ----
@@ -179,6 +180,8 @@ Six new text layers will be drawn according to the scale. If you need more than 
 ### Draw Custom Typographic Scale
 
 Same as above, except you can enter a custom ratio.
+
+*Future Improvement: The plan is to create symbols instead of plain text layers once the Sketch Plugin API provides the ability to make new symbols.*
 
 ![Draw Typographic Scale](plugin previews/custom typographic scale.gif)
 
