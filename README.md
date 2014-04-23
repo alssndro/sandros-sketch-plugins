@@ -5,7 +5,14 @@ A random assortment of Sketch plugins.
 - [Installation](#installation)
 - [Compatibility](#compatibility)
 - [Keyboard Shortucts](#how-do-i-use-a-plugin-as-a-keyboard-shortcut)
-- [Plugin Previews](#plugin-previews)
+
+## Plugin Previews
+
+- [Alignment](#alignment)
+- [Typography](#typography)
+- [Colour](#colour)
+
+## General Info
 
 I have heavily commented these plugins so that others can learn (and also to refresh
 my memory on how to write JSTalk in x weeks/months/years time!)
@@ -165,7 +172,7 @@ Aligns the bottom of the currently selected elements to the previous Baseline Gr
 
 ### Draw Typographic Scale
 
-First select a text layer to use as the base layer. This will be the base font size of your scale. 
+First select a text layer to use as the base layer. This will be the base font size of your scale.
 
 Then activate the plugin and choose the scale you would like to use. Scales are taken from [modularscale.com](http://modularscale.com).
 
@@ -187,3 +194,30 @@ Same as above, except you can enter a custom ratio.
 
 ----
 
+## Colour
+
+### Create Random Colour Palette (Top)
+
+First create a base shape layer that will be used to set the size of each colour in your palette.
+
+Select the shape layer and activate the plugin. A new palette will be created at random, chosen from the
+[Top 100 Palettes at Colourlovers](http://colourlovers.com/palettes/top).
+
+Works on any shape.
+
+![Create Random Colour Palette (Top)](plugin previews/random palette top.gif)
+
+----
+
+### Create Random Colour Palette (Random)
+
+First create a base shape layer that will be used to set the size of each colour in your palette.
+
+Select the shape layer and activate the plugin. A new palette will be created based on a random palette retrieved
+from all palettes on Colourlovers.
+
+Works on any shape.
+
+![Create Random Colour Palette (Random)](plugin previews/random palette random.gif)
+
+----

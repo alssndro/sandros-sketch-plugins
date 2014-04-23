@@ -80,6 +80,11 @@ alessndro.text = {
 };
 
 alessndro.alignment = {
+  moveToXPosition: function(item, new_x_pos) {
+    var current_x_pos = [[item frame] x]
+    [[item frame] subtractX: current_x_pos - 1]
+    [[item frame] addX: new_x_pos - 1]
+  },
   moveToYPosition: function(item, new_y_pos) {
     var current_y_pos = [[item frame] y]
     [[item frame] subtractY: current_y_pos - 1]
@@ -199,4 +204,67 @@ alessndro.type = {
     //   log(i + ": " + [current_text_layer fontSize])
     // }
   }
-}
+};
+
+alessndro.color = {
+  createColourFromHex: function(hex_string, alpha_value) {
+    return [MSColor colorWithHex: "#" + hex_string alpha: alpha_value] 
+  },
+  drawColourPalette: function(base_layer, colours_array) {
+    var first_colour = alessndro.color.createColourFromHex(colours_array[0], 1.0)
+    var palette_layers = [base_layer]
+
+    var first_fill = [[[base_layer style] fills] firstObject]
+    [first_fill setColor: first_colour]
+
+    for(var i = 1; i < colours_array.length; i++) {
+      var previous_layer = palette_layers[palette_layers.length -1]
+      var new_colour_layer = [previous_layer duplicate]
+
+      var new_colour = alessndro.color.createColourFromHex(colours_array[i], 1.0]
+      [[[[new_colour_layer style] fills] firstObject] setColor: new_colour]
+
+      var current_x_pos = [[new_colour_layer frame] x]
+      var new_x_position = current_x_pos + [[new_colour_layer frame] width]
+      alessndro.alignment.moveToXPosition(new_colour_layer, new_x_position)
+
+      palette_layers.push(new_colour_layer)
+    }
+  }
+};
+
+alessndro.network = {
+  makeRequest: function(url, method_name) {
+    var request_url = [NSURL URLWithString: url];
+
+    var request = NSMutableURLRequest.requestWithURL_cachePolicy_timeoutInterval(request_url, NSURLRequestReloadIgnoringLocalCacheData, 60);
+    request.setHTTPMethod_(method_name);
+
+    var response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+
+    if (response != nil) {
+      // convert data to text
+      response_text = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+      return response_text;
+    }
+  }
+};
+
+alessndro.colourlovers = {
+  createPaletteFromJSON: function(json_response) {
+
+    var parsed_response = JSON.parse(json_response)
+    var no_of_palettes = parsed_response.length
+    var random_palette_index = Math.floor(Math.random() * no_of_palettes)
+    var random_palette = parsed_response[random_palette_index]
+
+    var colours = []
+    var palette_colour_list = random_palette["colors"]
+
+    for(var y=0; y < palette_colour_list.length; y++) {
+      colours.push(palette_colour_list[y])
+    }
+
+    return colours
+  }
+};

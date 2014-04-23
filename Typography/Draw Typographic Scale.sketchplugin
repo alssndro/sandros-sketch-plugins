@@ -4,11 +4,11 @@
 // selected by the user
 
 if([selection count] != 0) {
-  //var ratio = [doc askForUserInput:"Enter ratio: " initialValue:""] || 1.5
 
-  var options = Object.keys(alessndro.type.scales)
-  var choice = createList('Select a scale:', options, 0)
+  var scale_options = Object.keys(alessndro.type.scales)
+  var choice = createList('Select a scale:', scale_options, 0)
 
+  // Retrieve the actual ratio
   var ratio = alessndro.type.scales[choice]
 
   // Use the selected text layer as the base of the scale
