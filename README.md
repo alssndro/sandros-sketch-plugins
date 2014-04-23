@@ -228,6 +228,5 @@ Create a base shape layer that will be used as the base of your palette and acti
 
 Works on any shape.
 
-![Create Monochrome Colour Palette](plugin previews/monochrome palette.gif)
 
 ----
