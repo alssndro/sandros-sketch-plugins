@@ -38,7 +38,7 @@ Further instructions can be found on the official [Sketch Plugin help page](http
 All plugins are developed and tested in Sketch 3, however, the official Sketch Plugin documentation
 states that [the API is backwards compatible with Sketch 2.](http://bohemiancoding.com/sketch/support/developer/03-reference/00.html)
 
-## How do I use a plugin as a keyboard shortcut?
+## How do I map a plugin to a keyboard shortcut?
 
 First install the plugin. Then in OS X navigate to Settings > Keyboard > Shortcuts. In the left hand menu select "App Shortcuts", select "All Applications" in the right hand menu and click the plus icon.
 
