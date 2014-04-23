@@ -12,7 +12,7 @@ if([selection count] != 0) {
 
   var palette = alessndro.colourlovers.createPaletteFromJSON(response)
 
-  alessndro.color.drawColourPalette(base_colour_layer, palette)
+  alessndro.colour.drawColourPalette(base_colour_layer, palette)
 } 
 else {
   var app = [NSApplication sharedApplication]

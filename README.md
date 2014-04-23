@@ -221,3 +221,13 @@ Works on any shape.
 ![Create Random Colour Palette (Random)](plugin previews/random palette random.gif)
 
 ----
+
+### Create Monochrome Colour Palette
+
+Create a base shape layer that will be used as the base of your palette and activate the plugin.
+
+Works on any shape.
+
+![Create Monochrome Colour Palette](plugin previews/monochrome palette.gif)
+
+----

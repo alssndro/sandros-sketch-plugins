@@ -176,8 +176,7 @@ alessndro.type = {
   },
   drawTypographicScale: function(base_text_layer, ratio, step) {
     // Keep track of all text layers as we build the scale
-    var text_layers = []
-    text_layers.push(base_text_layer)
+    var text_layers = [base_text_layer]
 
     for (var i=0; i < step; i++) {
       // The previous text layer in the overall scale
@@ -206,12 +205,15 @@ alessndro.type = {
   }
 };
 
-alessndro.color = {
+alessndro.colour = {
   createColourFromHex: function(hex_string, alpha_value) {
     return [MSColor colorWithHex: "#" + hex_string alpha: alpha_value] 
   },
+  // Draws a palette on the artboard.
+  // Pass in a base_layer which is used for sizing each colour element, and
+  // and array of MSColor objects that will make up the palette
   drawColourPalette: function(base_layer, colours_array) {
-    var first_colour = alessndro.color.createColourFromHex(colours_array[0], 1.0)
+    var first_colour = colours_array[0]
     var palette_layers = [base_layer]
 
     var first_fill = [[[base_layer style] fills] firstObject]
@@ -221,7 +223,7 @@ alessndro.color = {
       var previous_layer = palette_layers[palette_layers.length -1]
       var new_colour_layer = [previous_layer duplicate]
 
-      var new_colour = alessndro.color.createColourFromHex(colours_array[i], 1.0]
+      var new_colour = colours_array[i]
       [[[[new_colour_layer style] fills] firstObject] setColor: new_colour]
 
       var current_x_pos = [[new_colour_layer frame] x]
@@ -230,6 +232,31 @@ alessndro.color = {
 
       palette_layers.push(new_colour_layer)
     }
+  },
+  // Creates and returns array of MSColor objects. Each subsequent colour has the 
+  // same hue/brightness/alpha, but the saturation is reduced by the amount passed
+  // to the function
+  createMonochromePalette: function(base_colour, reduction) {
+    var mono_palette = [base_colour]
+
+    var colour_in_hsb = [base_colour HSBColor]
+
+    // Monochrome palette, so these values stay the same
+    var colour_in_hsb_hue = [colour_in_hsb hueComponent]
+    var colour_in_hsb_brightnesss = [colour_in_hsb brightnessComponent]
+    var colour_in_hsb_alpha = [colour_in_hsb alphaComponent]
+
+    for(var i = 0; i < 8; i++) {
+      var previous_colour = mono_palette[mono_palette.length -1]
+      var previous_colour_sat = [[previous_colour HSBColor] saturationComponent]
+
+      var lighter_sat = previous_colour_sat * reduction
+
+      var new_colour = [MSColor colorWithHue:colour_in_hsb_hue saturation:lighter_sat brightness:colour_in_hsb_brightnesss alpha: colour_in_hsb_alpha]
+      var new_colour_hex = [new_colour hexValue]
+      mono_palette.push(new_colour)
+    }
+    return mono_palette
   }
 };
 
@@ -241,16 +268,14 @@ alessndro.network = {
     request.setHTTPMethod_(method_name);
 
     var response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-
-    if (response != nil) {
-      // convert data to text
-      response_text = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-      return response_text;
-    }
+    response_text = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    return response_text;
   }
 };
 
 alessndro.colourlovers = {
+  // Creates and returns an array of MSColor objects based on a API JSON response
+  // of hex values
   createPaletteFromJSON: function(json_response) {
 
     var parsed_response = JSON.parse(json_response)
@@ -261,8 +286,9 @@ alessndro.colourlovers = {
     var colours = []
     var palette_colour_list = random_palette["colors"]
 
-    for(var y=0; y < palette_colour_list.length; y++) {
-      colours.push(palette_colour_list[y])
+    for(var i = 0; i < palette_colour_list.length; i++) {
+      var colour = alessndro.colour.createColourFromHex(palette_colour_list[i], 1.0)
+      colours.push(colour)
     }
 
     return colours
