@@ -4,10 +4,12 @@ var current_page = [doc currentPage]
 var currentArtboard = [current_page currentArtboard]
 
 removeGuides([currentArtboard verticalRulerData])
-removeGuides([currentArtboard horiztonalRulerData])
+removeGuides([currentArtboard horizontalRulerData])
 
 function removeGuides(ruler) {
   for(var i = [ruler numberOfGuides]; i > 0; i--) {
-    log([ruler removeGuideAtIndex: 0])
+    [ruler removeGuideAtIndex: 0]
   }
 }
+
+log("finished")
