@@ -113,7 +113,7 @@ alessndro.alignment = {
 
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
-    var new_y_pos_coefficient = coefficient = Math.floor(item_y_pos / baseline_interval)
+    var new_y_pos_coefficient = Math.floor(item_y_pos / baseline_interval)
     var new_y_pos = (baseline_interval * new_y_pos_coefficient) + baseline_interval
     alessndro.alignment.moveToYPosition(item, new_y_pos)
   },
@@ -125,7 +125,7 @@ alessndro.alignment = {
     
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
-    var new_y_pos_coefficient = coefficient = Math.floor(item_y2_pos / baseline_interval)
+    var new_y_pos_coefficient = Math.floor(item_y2_pos / baseline_interval)
     var new_y_pos = ((new_y_pos_coefficient * baseline_interval) - item_height) + baseline_interval
     alessndro.alignment.moveToYPosition(item, new_y_pos)
   },
@@ -135,7 +135,7 @@ alessndro.alignment = {
 
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
-    var new_y_pos_coefficient = coefficient = Math.ceil(item_y_pos / baseline_interval)
+    var new_y_pos_coefficient = Math.ceil(item_y_pos / baseline_interval)
     var new_y_pos = (baseline_interval * new_y_pos_coefficient) - baseline_interval
     alessndro.alignment.moveToYPosition(item, new_y_pos)
   },
@@ -147,9 +147,38 @@ alessndro.alignment = {
     
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
-    var new_y_pos_coefficient = coefficient = Math.floor(item_y2_pos / baseline_interval)
+    var new_y_pos_coefficient = Math.floor(item_y2_pos / baseline_interval)
     var new_y_pos = ((new_y_pos_coefficient * baseline_interval) - item_height) - baseline_interval
     alessndro.alignment.moveToYPosition(item, new_y_pos)
+  },
+  // Align the left edge of the passed in item to the nearest column gridline
+  alignLeftEdgeToNearestGridline: function(grid, item) {
+    var nearest_gridline_index = grid.findNearestStartGridlineIndex(item)
+    alessndro.alignment.moveToXPosition(item, grid.columns[nearest_gridline_index].start)
+  },
+  // Aligns the left edge of the passed in item to the next column gridline
+  alignLeftEdgeToNextGridline: function(grid, item) {
+    var nearest_gridline_index = grid.findNearestStartGridlineIndex(item)
+    var nearest_column = grid.columns[nearest_gridline_index]
+    var item_x_pos = [[item frame] x]
+    if ((nearest_column.start < item_x_pos) || (nearest_column.start === item_x_pos)) {
+      var next_column_index = (nearest_gridline_index + 1 > grid.columns.length-1) ? 0 : nearest_gridline_index + 1
+      alessndro.alignment.moveToXPosition(item, grid.columns[next_column_index].start)
+    } else {
+      alessndro.alignment.moveToXPosition(item, nearest_column.start)
+    }
+  },
+  // Aligns the left edge of the passed in item to the previous column gridline
+  alignLeftEdgeToPreviousGridline: function(grid, item) {
+    var nearest_gridline_index = grid.findNearestStartGridlineIndex(item)
+    var nearest_column = grid.columns[nearest_gridline_index]
+    var item_x_pos = [[item frame] x]
+    if ((nearest_column.start > item_x_pos) || (nearest_column.start === item_x_pos)) {
+      var previous_column_index = (nearest_gridline_index - 1 < 0) ? grid.columns.length - 1 : nearest_gridline_index -1
+      alessndro.alignment.moveToXPosition(item, grid.columns[previous_column_index].start)
+    } else {
+      alessndro.alignment.moveToXPosition(item, nearest_column.start)
+    }
   }
 };
 
@@ -292,5 +321,125 @@ alessndro.colourlovers = {
     }
 
     return colours
+  }
+};
+
+// Is this the correct way to define a class under a namespace in JS?
+alessndro.grid = {
+  // Represents a Sketch grid created using 'View > Grid Settings', not
+  // ruler guides
+  // Pass the MSDocument's grid to the contructor
+  HorizontalGrid: function(grid) {
+    this.grid = grid;
+    this.gutter_width = [grid gutterWidth];
+    this.no_of_gutters = [grid totalNumberOfGutters];
+    this.column_width = [grid columnWidth];
+    this.no_of_columns = [grid numberOfColumns];
+    this.grid_width = (this.no_of_gutters * this.gutter_width) + (this.no_of_columns * this.column_width);
+    this.columns = this.convertSketchGridToColumns();
+  },
+  Column: function (start_x, end_x) {
+    this.start = start_x;
+    this.end = end_x;
+  }
+}
+
+alessndro.grid.HorizontalGrid.prototype.hasGuttersOnOutside = function() {
+  return this.no_of_gutters >= this.no_of_columns
+}
+
+alessndro.grid.HorizontalGrid.prototype.toString = function() {
+  var grid_string = ""
+  for(i = 0; i < this.columns.length; i++) {
+    grid_string += this.columns[i]
+  }
+  return grid_string
+}
+
+alessndro.grid.HorizontalGrid.prototype.convertSketchGridToColumns = function() {
+  if (this.hasGuttersOnOutside()) {
+    var first_column = new alessndro.grid.Column(this.gutter_width / 2, this.gutter_width / 2 + this.column_width)
+  }
+  else {
+    var first_column = new alessndro.grid.Column(0, this.column_width)
+  }
+
+  var all_columns = [first_column]
+
+  for(i = 0; i < this.no_of_columns -1; i ++) {
+    var previous_column = all_columns[all_columns.length-1]
+
+    var start = previous_column.end + this.gutter_width
+    var end = start + this.column_width
+
+    var new_column = new alessndro.grid.Column(start, end)
+    all_columns.push(new_column)
+  }
+  return all_columns
+};
+
+alessndro.grid.HorizontalGrid.prototype.drawGridAsGuidelines = function() {
+  var ruler = [[[doc currentPage] currentArtboard] horizontalRulerData]
+
+  for(i = 0; i < this.columns.length; i++) {
+    [ruler addGuideWithValue: this.columns[i].start]
+    [ruler addGuideWithValue: this.columns[i].end]
+  }
+};
+
+// Returns an array of the starting (left edge) x-coordinate of each column in the grid
+alessndro.grid.HorizontalGrid.prototype.columnStartsToArray = function() {
+  var gridlines = []
+
+  for(i = 0; i < this.columns.length; i++) {
+    gridlines.push(Math.floor(this.columns[i].start))
+  }
+
+  return gridlines
+};
+
+// Returns the index of the nearest column of a HorizontalGrid
+// This index is used to retrieve the Column from the HroizontalGrid's 'columns' array
+// A column has two x coordinates: the left edge and the right edge
+// 'Starting' gridline is therefore the left edge
+alessndro.grid.HorizontalGrid.prototype.findNearestStartGridlineIndex = function(item) {
+    var start_positions = this.columnStartsToArray()
+    
+    // The x-coordinate of the item we want to find the closest gridline to
+    var item_x_pos = [[item frame] x]
+
+    // The x coordinate of the closest gridline
+    var closest_gridline_index = 0
+
+    // The difference between the x cooardinate of the item passed in and
+    // the closest gridline
+    var closest_gridline_diff = Math.abs(item_x_pos - start_positions[closest_gridline_index])
+
+    // Naive way of doing it, can be improved
+    for (i = 0; i < start_positions.length; i ++) {
+      var current_gridline = start_positions[i]
+      var distance = Math.abs(item_x_pos - current_gridline)
+
+      if (distance < closest_gridline_diff) {
+        closest_gridline_index = i
+        closest_gridline_diff = distance
+      }
+    }
+  return closest_gridline_index
+}
+
+alessndro.grid.Column.prototype.toString = function() {
+  return "Start: " + this.start + " || End: " + this.end
+};
+
+alessndro.grid.Column.toArray = function() {
+  return [this.start, this.end]
+};
+
+
+
+Array.prototype.each = function(callback) {
+  for (i = 0; i < this.length; i ++) {
+    callback(this[i])
   }
 };
