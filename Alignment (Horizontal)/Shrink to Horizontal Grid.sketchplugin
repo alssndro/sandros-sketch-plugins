@@ -1,4 +1,4 @@
-// Resizes the selected elements to fit the columns of the grid
+// Shrinks the selected elements to fit the columns of the grid
 // Need to have a columnal Layout Sketch grid set using 'View > Grid Settings > Layout'
 
 #import 'alessndro_library.js'
@@ -8,12 +8,9 @@ var grid = new alessndro.grid.HorizontalGrid([doc grid])
 if([selection count] != 0) {
   var loop = [selection objectEnumerator]
   while (item = [loop nextObject]) {
-    log("============Sketch Grid Direct Settings============")
+    log("===========SHRINKING=============")
+    alessndro.size.shrinkToHorizontalGrid(item)
     log(grid)
-    log([[doc grid] gutterWidth])
-    log([[doc grid] columnWidth])
-    log([[doc grid] guttersOutside])
-    log("Item position: " + [item frame])
     log("======================================")
   }
 } 
