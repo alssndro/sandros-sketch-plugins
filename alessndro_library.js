@@ -420,6 +420,7 @@ alessndro.grid = {
   }
 };
 
+// Prints a string summarising the HorizontaGrid, for debugging
 alessndro.grid.HorizontalGrid.prototype.toString = function() {
   var grid_string = "Column: " + this.column_width + " || Gutter: " + this.gutter_width + " "
   for(i = 0; i < this.columns.length; i++) {
@@ -428,9 +429,12 @@ alessndro.grid.HorizontalGrid.prototype.toString = function() {
   return grid_string += "Gutters?: " + this.hasGuttersOutside
 };
 
+// Creates Column objects that together represent the horizontal 
+// grid set using View > Grid Settings > Layout
+// Returns an array containing all Columns
 alessndro.grid.HorizontalGrid.prototype.convertSketchGridToColumns = function() {
   if (this.hasGuttersOutside) {
-    var first_column = new alessndro.grid.Column(Math.round(this.gutter_width / 2), Math.round(this.gutter_width / 2) + this.column_width)
+    var first_column = new alessndro.grid.Column((this.gutter_width / 2), (this.gutter_width / 2) + this.column_width)
   }
   else {
     var first_column = new alessndro.grid.Column(0, this.column_width)
@@ -450,6 +454,7 @@ alessndro.grid.HorizontalGrid.prototype.convertSketchGridToColumns = function() 
   return all_columns
 };
 
+// Draws a guideline-equivalent of the horizontal grid set using View > Grid Settings > Layout
 alessndro.grid.HorizontalGrid.prototype.drawGridAsGuidelines = function() {
   var ruler = [[[doc currentPage] currentArtboard] horizontalRulerData]
 
@@ -481,64 +486,30 @@ alessndro.grid.HorizontalGrid.prototype.columnEndsToArray = function() {
   return gridlines
 };
 
-// Returns the index of the nearest column of a HorizontalGrid
-// This index is used to retrieve the Column from the HroizontalGrid's 'columns' array
+// Returns the index of the nearest column of a HorizontalGrid, based on its starting gridline
+// This index is used to retrieve the Column from the HorizontalGrid's 'columns' array
 // A column has two x coordinates: the left edge and the right edge
-// 'Starting' gridline is therefore the left edge
+// 'Start' gridline is therefore the left edge
 alessndro.grid.HorizontalGrid.prototype.findNearestStartGridlineIndex = function(item) {
     var start_positions = this.columnStartsToArray()
     
     // The x-coordinate of the item we want to find the closest gridline to
     var item_x_pos = [[item frame] x]
 
-    // The x coordinate of the closest gridline
-    var closest_gridline_index = 0
-
-    // The difference between the x cooardinate of the item passed in and
-    // the closest gridline
-    var closest_gridline_diff = Math.abs(item_x_pos - start_positions[closest_gridline_index])
-
-    // Naive way of doing it, can be improved
-    for (i = 0; i < start_positions.length; i ++) {
-      var current_gridline = start_positions[i]
-      var distance = Math.abs(item_x_pos - current_gridline)
-
-      if (distance < closest_gridline_diff) {
-        closest_gridline_index = i
-        closest_gridline_diff = distance
-      }
-    }
-  return closest_gridline_index
+  return alessndro.utility.findNearestNeighbour(item_x_pos, start_positions)
 }
 
-// Returns the index of the nearest column of a HorizontalGrid
-// This index is used to retrieve the Column from the HroizontalGrid's 'columns' array
+// Returns the index of the nearest column of a HorizontalGrid, based on its ending gridline
+// This index is used to retrieve the Column from the HorizontalGrid's 'columns' array
 // A column has two x coordinates: the left edge and the right edge
-// 'Starting' gridline is therefore the left edge
+// 'End' gridline is therefore the right edge
 alessndro.grid.HorizontalGrid.prototype.findNearestEndGridlineIndex = function(item) {
-    var start_positions = this.columnEndsToArray()
-    log(start_positions)
+    var end_positions = this.columnEndsToArray()
+
     // The x-coordinate of the item we want to find the closest gridline to
     var item_x_pos = [[item frame] x] + [[item frame] width]
 
-    // The x coordinate of the closest gridline
-    var closest_gridline_index = 0
-
-    // The difference between the x cooardinate of the item passed in and
-    // the closest gridline
-    var closest_gridline_diff = Math.abs(item_x_pos - start_positions[closest_gridline_index])
-
-    // Naive way of doing it, can be improved
-    for (i = 0; i < start_positions.length; i ++) {
-      var current_gridline = start_positions[i]
-      var distance = Math.abs(item_x_pos - current_gridline)
-
-      if (distance < closest_gridline_diff) {
-        closest_gridline_index = i
-        closest_gridline_diff = distance
-      }
-    }
-  return closest_gridline_index
+  return alessndro.utility.findNearestNeighbour(item_x_pos, end_positions)
 };
 
 alessndro.grid.Column.prototype.toString = function() {
@@ -549,10 +520,28 @@ alessndro.grid.Column.toArray = function() {
   return [this.start, this.end]
 };
 
+alessndro.utility = {
+  // Given a number and an array of numbers, it returns
+  // the index into the numbers array of the nearest neighbour
+  // This current implementation is quite naive. It starts by setting the nearest
+  // neighbour as the first element in the neighbours array, and then
+  // compares x to every other neighbour
+  findNearestNeighbour: function(x, neighbours){
+      var closest_neighbour_index = 0
 
+      // The difference between the x cooardinate of the item passed in and
+      // the closest gridline
+      var closest_neighbour_diff = Math.abs(x - neighbours[closest_neighbour_index])
 
-Array.prototype.each = function(callback) {
-  for (i = 0; i < this.length; i ++) {
-    callback(this[i])
+      for (i = 0; i < neighbours.length; i ++) {
+        var current_neighbour = neighbours[i]
+        var distance = Math.abs(x - current_neighbour)
+
+        if (distance < closest_neighbour_diff) {
+          closest_neighbour_index = i
+          closest_neighbour_diff = distance
+        }
+      }
+    return closest_neighbour_index
   }
-};
+}
