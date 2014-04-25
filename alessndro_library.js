@@ -50,12 +50,19 @@ alessndro.common = {
 };
 
 alessndro.size = {
-  resizeHeightTo: function(item, new_size) {
+  resizeHeightTo: function(item, new_height) {
     var current_height = [[item frame] height]
 
     // Have to do it this way since there is no method to set the height directly
     [[item frame] subtractHeight: current_height - 1]
-    [[item frame] addHeight: new_size - 1]
+    [[item frame] addHeight: new_height - 1]
+  },
+  resizeWidthTo: function(item, new_width) {
+    var current_width = [[item frame] width]
+
+    // Have to do it this way since there is no method to set the height directly
+    [[item frame] subtractWidth: current_width - 1]
+    [[item frame] addWidth: new_width - 1]
   },
   resizeToBaselineGrid: function(item) {
     var item_height = [[item frame] height]
@@ -63,6 +70,47 @@ alessndro.size = {
     var new_height_coefficient = alessndro.common.calculateCoefficient(item_height)
     var new_height = baseline_interval * new_height_coefficient
     alessndro.size.resizeHeightTo(item, new_height)
+  },
+  resizeToHorizontalGrid: function(item) {
+    // First align to column
+    alessndro.alignment.alignLeftEdgeToNearestGridline(grid, item)
+
+    var item_width = [[item frame] width]
+    var item_x2_pos = item_width + [[item frame] x]
+    var nearest_column_index = grid.findNearestEndGridlineIndex(item)
+    var nearest_column = grid.columns[nearest_column_index]
+    log("Nearest end column: " + nearest_column.end)
+    var new_width = nearest_column.end - item_width - [[item frame] x]
+    log("Current width: " + item_width)
+    log("Width to add: " + new_width)
+    log("Final width :" + (item_width + new_width))
+    alessndro.size.resizeWidthTo(item, item_width + new_width)
+    log(grid)
+  },
+  shrinkToHorizontalGrid: function(item) {
+    // First align to column
+    alessndro.alignment.alignLeftEdgeToNearestGridline(grid, item)
+
+    var item_width = [[item frame] width]
+    var item_x2_pos = item_width + [[item frame] x]
+    var nearest_column_index = grid.findNearestEndGridlineIndex(item)
+
+    var nearest_column = grid.columns[nearest_column_index - 1]
+    if (nearest_column.end >= item_x2_pos) {
+      log("Go to previous column")
+      nearest_column = grid.columns[nearest_column_index - 2]
+    }
+
+    log("Nearest end column: " + nearest_column.end)
+    var new_width = Math.round(nearest_column.end - [[item frame] x])
+    log("Current width: " + item_width)
+    log("New width: " + new_width)
+
+    if (!(new_width < grid.column_width)) {
+      alessndro.size.resizeWidthTo(item, new_width)
+    } else {
+      log("Can't shrink")
+    }
   }
 };
 
@@ -81,9 +129,12 @@ alessndro.text = {
 
 alessndro.alignment = {
   moveToXPosition: function(item, new_x_pos) {
+    log("Aligning to: " + new_x_pos)
+    log("Current: " + [[item frame] x])
     var current_x_pos = [[item frame] x]
     [[item frame] subtractX: current_x_pos - 1]
     [[item frame] addX: new_x_pos - 1]
+    log("New position: " + new_x_pos)
   },
   moveToYPosition: function(item, new_y_pos) {
     var current_y_pos = [[item frame] y]
@@ -154,6 +205,7 @@ alessndro.alignment = {
   // Align the left edge of the passed in item to the nearest column gridline
   alignLeftEdgeToNearestGridline: function(grid, item) {
     var nearest_gridline_index = grid.findNearestStartGridlineIndex(item)
+    log(grid.columns[nearest_gridline_index].start)
     alessndro.alignment.moveToXPosition(item, grid.columns[nearest_gridline_index].start)
   },
   // Aligns the left edge of the passed in item to the next column gridline
@@ -336,29 +388,26 @@ alessndro.grid = {
     this.column_width = [grid columnWidth];
     this.no_of_columns = [grid numberOfColumns];
     this.grid_width = (this.no_of_gutters * this.gutter_width) + (this.no_of_columns * this.column_width);
+    this.hasGuttersOutside = [grid guttersOutside] === 1 ? true : false;
     this.columns = this.convertSketchGridToColumns();
   },
   Column: function (start_x, end_x) {
     this.start = start_x;
     this.end = end_x;
   }
-}
-
-alessndro.grid.HorizontalGrid.prototype.hasGuttersOnOutside = function() {
-  return this.no_of_gutters >= this.no_of_columns
-}
+};
 
 alessndro.grid.HorizontalGrid.prototype.toString = function() {
-  var grid_string = ""
+  var grid_string = "Column: " + this.column_width + " || Gutter: " + this.gutter_width + " "
   for(i = 0; i < this.columns.length; i++) {
     grid_string += this.columns[i]
   }
-  return grid_string
-}
+  return grid_string += "Gutters?: " + this.hasGuttersOutside
+};
 
 alessndro.grid.HorizontalGrid.prototype.convertSketchGridToColumns = function() {
-  if (this.hasGuttersOnOutside()) {
-    var first_column = new alessndro.grid.Column(this.gutter_width / 2, this.gutter_width / 2 + this.column_width)
+  if (this.hasGuttersOutside) {
+    var first_column = new alessndro.grid.Column(Math.round(this.gutter_width / 2), Math.round(this.gutter_width / 2) + this.column_width)
   }
   else {
     var first_column = new alessndro.grid.Column(0, this.column_width)
@@ -428,8 +477,38 @@ alessndro.grid.HorizontalGrid.prototype.findNearestStartGridlineIndex = function
   return closest_gridline_index
 }
 
+// Returns the index of the nearest column of a HorizontalGrid
+// This index is used to retrieve the Column from the HroizontalGrid's 'columns' array
+// A column has two x coordinates: the left edge and the right edge
+// 'Starting' gridline is therefore the left edge
+alessndro.grid.HorizontalGrid.prototype.findNearestEndGridlineIndex = function(item) {
+    var start_positions = this.columnStartsToArray()
+    
+    // The x-coordinate of the item we want to find the closest gridline to
+    var item_x_pos = [[item frame] x] + [[item frame] width]
+
+    // The x coordinate of the closest gridline
+    var closest_gridline_index = 0
+
+    // The difference between the x cooardinate of the item passed in and
+    // the closest gridline
+    var closest_gridline_diff = Math.abs(item_x_pos - start_positions[closest_gridline_index])
+
+    // Naive way of doing it, can be improved
+    for (i = 0; i < start_positions.length; i ++) {
+      var current_gridline = start_positions[i]
+      var distance = Math.abs(item_x_pos - current_gridline)
+
+      if (distance < closest_gridline_diff) {
+        closest_gridline_index = i
+        closest_gridline_diff = distance
+      }
+    }
+  return closest_gridline_index
+};
+
 alessndro.grid.Column.prototype.toString = function() {
-  return "Start: " + this.start + " || End: " + this.end
+  return "(Start: " + this.start + " || End: " + this.end + ") "
 };
 
 alessndro.grid.Column.toArray = function() {
