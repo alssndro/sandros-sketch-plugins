@@ -62,11 +62,11 @@ the shortcut quickly enough, Sketch will crash. Every time.
 
 ### Avoiding crashes when using plugins you expect to activate repeatedly
 
-This obviously becomes a big issue since the majority of the alignment-based plugins will likely be assinged to a keyboard
+This obviously becomes a big issue since the majority of the alignment-based plugins will likely be assigned to a keyboard
 shortcut and activated multiple times in quick succession as you move elements around/resize them.
 
 The best advice I can give is to figure out the 'crash' threshold. We're going to make Sketch crash, so open a blank document, draw
-a rectangle, select it, and repeatedly press the keyboard shortcut of the plugin you want to figue out the threshold for.
+a rectangle, select it, and repeatedly press the keyboard shortcut of the plugin you want to figure out the threshold for.
 
 Start at a slow rate, then gradually increase how fast you press the shortcut.
 Eventually Sketch will crash and you will now have a rough idea of how quickly you can activate the plugin before Sketch will crash.
@@ -79,7 +79,9 @@ A new menu will appear allowing you to select Sketch as the Application, enter t
 
 ## Plugin Previews
 
-# Horizontal Alignment (alpha)
+Simple descriptions of (most) plugins.
+
+## Horizontal Alignment (alpha)
 
 All plugins require the use of a columnal Layout Grid, created using ``View > Grid Settings... > Layout Grid``.
 
