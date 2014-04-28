@@ -23,7 +23,7 @@ my memory on how to write JSTalk in x weeks/months/years time)
 
 If you have any suggestions for plugin ideas then feel free to open an issue.
 
-** Please read the [Avoiding Crashes](#avoiding-crashes) section of this README for a less frustration-inducing experience
+**Please read the [Avoiding Crashes](#avoiding-crashes) section of this README for a less frustration-inducing experience
 with Sketch and Plugins in general.**
 
 ## Installation

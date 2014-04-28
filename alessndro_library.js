@@ -488,7 +488,6 @@ alessndro.grid.HorizontalGrid.prototype.columnStartsToArray = function() {
   for(i = 0; i < this.columns.length; i++) {
     gridlines.push(this.columns[i].start);
   }
-
   return gridlines;
 };
 
