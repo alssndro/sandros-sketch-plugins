@@ -1,27 +1,30 @@
 # Sketch Plugins
 
-A random assortment of Sketch plugins.
+An assortment of Sketch Plugins aimed towards working with grids/layouts and typography.
+
+There are also some additional plugins for generating colour palettes.
 
 - [Installation](#installation)
 - [Compatibility](#compatibility)
+- [Avoiding Crashes](#avoiding-crashes)
 - [Keyboard Shortucts](#how-do-i-use-a-plugin-as-a-keyboard-shortcut)
 
 ## Plugin Previews
-
-- [Alignment](#alignment)
+- [Horizontal Alignment](#horizontal-alignment)
+- [Vertical Alignment](#vertical-alignment)
+- [Grid](#grid)
 - [Typography](#typography)
 - [Colour](#colour)
 
 ## General Info
 
 I have heavily commented these plugins so that others can learn (and also to refresh
-my memory on how to write JSTalk in x weeks/months/years time!)
+my memory on how to write JSTalk in x weeks/months/years time)
 
 If you have any suggestions for plugin ideas then feel free to open an issue.
 
-Warning: **Always** save often when using any plugins. I have noticed that assigning a plugin to a
-keyboard shortcut and spamming it is a great way to make Sketch crash. So be careful when using a plugin
-that you expect to use multiple times over a very short period of time (i.e. four times a second)
+** Please read the [Avoiding Crashes](#avoiding-crashes) section of this README for a less frustration-inducing experience
+with Sketch and Plugins in general.**
 
 ## Installation
 
@@ -38,6 +41,36 @@ Further instructions can be found on the official [Sketch Plugin help page](http
 All plugins are developed and tested in Sketch 3, however, the official Sketch Plugin documentation
 states that [the API is backwards compatible with Sketch 2.](http://bohemiancoding.com/sketch/support/developer/03-reference/00.html)
 
+
+## Avoiding Crashes
+
+This section contains some quick tips about how to avoid Sketch crashing when activating the same Plugin in quick succession. And by quick I mean multiple-times-a-second quick.
+This really only applies to plugins assigned to keyboard shortcuts.
+
+### Why don't you just write plugins that don't crash?
+
+Unfortunately it's not that simple, and I'm 99% sure that crashes aren't caused by plugins themselves, but are a [JSTalk](http://jstalk.org)/Sketch issue.
+
+How do I know this? Well, create the simplest plugin you can imagine, a ``.sketchplugin`` file that contains only one line:
+
+`` doc ``
+
+All this does is access the ``doc`` variable, which returns an ``MSDocument`` object representing the currently open document in Sketch.
+
+Assign this plugin to a Keyboard Shortcut, open Sketch and hammer away at your newly created Shortcut. If you activate
+the shortcut quickly enough, Sketch will crash. Every time.
+
+### Avoiding crashes when using plugins you expect to activate repeatedly
+
+This obviously becomes a big issue since the majority of the alignment-based plugins will likely be assinged to a keyboard
+shortcut and activated multiple times in quick succession as you move elements around/resize them.
+
+The best advice I can give is to figure out the 'crash' threshold. We're going to make Sketch crash, so open a blank document, draw
+a rectangle, select it, and repeatedly press the keyboard shortcut of the plugin you want to figue out the threshold for.
+
+Start at a slow rate, then gradually increase how fast you press the shortcut.
+Eventually Sketch will crash and you will now have a rough idea of how quickly you can activate the plugin before Sketch will crash.
+
 ## How do I map a plugin to a keyboard shortcut?
 
 First install the plugin. Then in OS X navigate to Settings > Keyboard > Shortcuts. In the left hand menu select "App Shortcuts", select "All Applications" in the right hand menu and click the plus icon.
@@ -46,9 +79,68 @@ A new menu will appear allowing you to select Sketch as the Application, enter t
 
 ## Plugin Previews
 
-## Alignment
+# Horizontal Alignment (alpha)
 
-All of these plugins revolve around sizing/aligning elements to a Baseline Grid.
+All plugins require the use of a columnal Layout Grid, created using ``View > Grid Settings... > Layout Grid``.
+
+**These plugins are still at an early stage and can be quite buggy, so use with caution. The [Avoiding Crashes](#avoiding-crashes) section becomes very relevant here!**
+
+** There is a chance that these plugins may not work with your Grid Layout. The easiest way to test if the Horizontal Alignment plugins will work is to
+set up your Layout Grid, then activate the [Draw Grid As Guidelines](#draw-grid-as-guidelines) plugin **.
+
+**This plugin converts your Layout Grid to Ruler guides. If the resulting Ruler Guides are in EXACTLY the same position as your Layout Grid columns, the Horizontal Alignment should work correctly.**
+
+### Align Left Edge to Column
+
+Aligns the left edge of the selected elements to nearest column.
+
+![Align Left Edge to Nearest Column](plugin previews/align left edge to column.gif)
+
+----
+
+### Align Left Edge to Next Column
+
+Aligns the left edge of the selected elements to the next column.
+
+![Align Left Edge to Next Column](plugin previews/align left edge to next column.gif)
+
+----
+
+### Align Left Edge to Previous Column
+
+Aligns the left edge of the selected elements to the next column.
+
+![Align Left Edge to Previous Column](plugin previews/align left edge to previous column.gif)
+
+----
+
+### Resize Column
+
+Resizes selected elements to fit the horizontal grid.
+
+![Resize to Fit Columns](plugin previews/resize to column.gif)
+
+----
+
+### Expand to Next Column
+
+Expands selected elements to the next column.
+
+![Expand to Next Column](plugin previews/expand to next column.gif)
+
+----
+
+### Shrink to Previous Column
+
+Shrinks selected elements to the previous column.
+
+![Shrink ot Previous Column](plugin previews/shrink to previous column.gif)
+
+----
+
+# Vertical Alignment
+
+All of these plugins revolve around sizing/aligning elements vertically to a Baseline Grid.
 
 You will need to have at least 2 vertical guides on your Artboard in order for the
 plugin to calculate the intervals of your Baseline Grid.
@@ -168,7 +260,22 @@ Aligns the bottom of the currently selected elements to the previous Baseline Gr
 
 ----
 
-## Typography
+# Grid
+
+### Draw Grid as Guidelines (alpha)
+
+Draws Ruler guides that mimic the horizontal grid set using ``View > Grid Settings... > Layout Grid``.
+
+*There are known issues with certain grid settings, hence alpha status.*
+
+![Draw Grid as Guidelines](plugin previews/draw grid as guidelines.gif)
+
+----
+
+
+
+
+# Typography
 
 ### Draw Typographic Scale
 
@@ -194,7 +301,7 @@ Same as above, except you can enter a custom ratio.
 
 ----
 
-## Colour
+# Colour
 
 ### Create Random Colour Palette (Top)
 
