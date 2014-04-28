@@ -8,9 +8,7 @@ var grid = new alessndro.grid.HorizontalGrid([doc grid])
 if([selection count] != 0) {
   var loop = [selection objectEnumerator]
   while (item = [loop nextObject]) {
-    log("============RESIZING===============")
     alessndro.size.resizeToHorizontalGrid(item)
-    log("======================================")
   }
 } 
 else {

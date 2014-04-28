@@ -79,13 +79,10 @@ alessndro.size = {
     var item_x2_pos = item_width + [[item frame] x]
     var nearest_column_index = grid.findNearestEndGridlineIndex(item)
     var nearest_column = grid.columns[nearest_column_index]
-    log("Nearest end column: " + nearest_column.end)
     var new_width = nearest_column.end - [[item frame] x]
-    log("Current width: " + item_width)
-    log("Width to add: " + new_width)
-    log("Final width :" + (item_width + new_width))
+
     alessndro.size.resizeWidthTo(item, new_width)
-    log(grid)
+
   },
   shrinkToHorizontalGrid: function(item) {
     // First align to column
@@ -97,14 +94,11 @@ alessndro.size = {
 
     var nearest_column = grid.columns[nearest_column_index - 1]
     if (nearest_column.end >= item_x2_pos) {
-      log("Go to previous column")
       nearest_column = grid.columns[nearest_column_index - 2]
     }
 
-    log("Nearest end column: " + nearest_column.end)
     var new_width = nearest_column.end - [[item frame] x]
-    log("Current width: " + item_width)
-    log("New width: " + new_width)
+
 
     if (!(new_width < grid.column_width)) {
       alessndro.size.resizeWidthTo(item, new_width)
@@ -128,10 +122,6 @@ alessndro.size = {
 
     var new_width = nearest_column.end - [[item frame] x]
 
-    log("Nearest end column: " + nearest_column.end)
-    log("Current width: " + item_width)
-    log("New width: " + new_width)
-
     alessndro.size.resizeWidthTo(item, new_width)
 
   }
@@ -152,12 +142,9 @@ alessndro.text = {
 
 alessndro.alignment = {
   moveToXPosition: function(item, new_x_pos) {
-    log("Aligning to: " + new_x_pos)
-    log("Current: " + [[item frame] x])
     var current_x_pos = [[item frame] x]
     [[item frame] subtractX: current_x_pos - 1]
     [[item frame] addX: new_x_pos - 1]
-    log("New position: " + new_x_pos)
   },
   moveToYPosition: function(item, new_y_pos) {
     var current_y_pos = [[item frame] y]
@@ -236,6 +223,10 @@ alessndro.alignment = {
     var nearest_gridline_index = grid.findNearestStartGridlineIndex(item)
     var nearest_column = grid.columns[nearest_gridline_index]
     var item_x_pos = [[item frame] x]
+
+    // Since we always want to move the item to the next column, need to check
+    // that the nearest column to the item is not the previous column (or the current column)
+    // We choose the next-next column if so 
     if ((nearest_column.start < item_x_pos) || (nearest_column.start === item_x_pos)) {
       var next_column_index = (nearest_gridline_index + 1 > grid.columns.length-1) ? 0 : nearest_gridline_index + 1
       alessndro.alignment.moveToXPosition(item, grid.columns[next_column_index].start)
@@ -248,6 +239,10 @@ alessndro.alignment = {
     var nearest_gridline_index = grid.findNearestStartGridlineIndex(item)
     var nearest_column = grid.columns[nearest_gridline_index]
     var item_x_pos = [[item frame] x]
+
+    // Since we always want to move the item to the previous column, need to check
+    // that the nearest column to the item is not the next column (or the current column)
+    // We choose the previous-previous column if so 
     if ((nearest_column.start > item_x_pos) || (nearest_column.start === item_x_pos)) {
       var previous_column_index = (nearest_gridline_index - 1 < 0) ? grid.columns.length - 1 : nearest_gridline_index -1
       alessndro.alignment.moveToXPosition(item, grid.columns[previous_column_index].start)
