@@ -85,12 +85,15 @@ Simple descriptions of (most) plugins.
 
 All plugins require the use of a columnal Layout Grid, created using ``View > Grid Settings... > Layout Grid``.
 
+----
+
 **These plugins are still at an early stage and can be quite buggy, so use with caution. The [Avoiding Crashes](#avoiding-crashes) section becomes very relevant here!**
 
-** There is a chance that these plugins may not work with your Grid Layout. The easiest way to test if the Horizontal Alignment plugins will work is to
-set up your Layout Grid, then activate the [Draw Grid As Guidelines](#draw-grid-as-guidelines) plugin **.
+**There is a chance that these plugins may not work with your Grid Layout. The easiest way to test if the Horizontal Alignment plugins will work is to set up your Layout Grid, then activate the [Draw Grid As Guidelines](#draw-grid-as-guidelines) plugin**.
 
 **This plugin converts your Layout Grid to Ruler guides. If the resulting Ruler Guides are in EXACTLY the same position as your Layout Grid columns, the Horizontal Alignment should work correctly.**
+
+----
 
 ### Align Left Edge to Column
 
