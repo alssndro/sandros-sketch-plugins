@@ -213,6 +213,7 @@ alessndro.colour = {
   // Pass in a base_layer which is used for sizing each colour element, and
   // and array of MSColor objects that will make up the palette
   drawColourPalette: function(base_layer, colours_array) {
+
     var first_colour = colours_array[0]
     var palette_layers = [base_layer]
 
@@ -254,6 +255,29 @@ alessndro.colour = {
 
       var new_colour = [MSColor colorWithHue:colour_in_hsb_hue saturation:lighter_sat brightness:colour_in_hsb_brightnesss alpha: colour_in_hsb_alpha]
       var new_colour_hex = [new_colour hexValue]
+      mono_palette.push(new_colour)
+    }
+    return mono_palette
+  },
+  createMonochromePalette2: function(base_colour) {
+    var mono_palette = [base_colour]
+
+    var colour_in_hsb = [base_colour HSBColor]
+
+    // Monochrome palette, so these values stay the same
+    var colour_in_hsb_hue = [colour_in_hsb hueComponent]
+    var colour_in_hsb_brightnesss = [colour_in_hsb brightnessComponent]
+    var colour_in_hsb_alpha = [colour_in_hsb alphaComponent]
+
+    var saturation_values = [100,100,100,70,70]
+    var brightness_values = [100,80,50,100,50]
+
+    for(var i = 0; i < saturation_values.length; i++) {
+      var new_sat = saturation_values[i] /100
+      var new_brightness = brightness_values[i] /100
+      log(new_sat + " " + new_brightness)
+      var new_colour = [MSColor colorWithHue: colour_in_hsb_hue saturation:new_sat brightness: new_brightness alpha: colour_in_hsb_alpha]
+      log(new_colour)
       mono_palette.push(new_colour)
     }
     return mono_palette
