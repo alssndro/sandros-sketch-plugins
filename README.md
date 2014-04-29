@@ -55,7 +55,7 @@ How do I know this? Well, create the simplest plugin you can imagine, a ``.sketc
 
 `` doc ``
 
-All this does is access the ``doc`` variable, which returns an ``MSDocument`` object representing the currently open document in Sketch.
+All this does is access the ``doc`` variable, which returns a ``MSDocument`` object representing the currently open document in Sketch.
 
 Assign this plugin to a Keyboard Shortcut, open Sketch and hammer away at your newly created Shortcut. If you activate
 the shortcut quickly enough, Sketch will crash. Every time.
@@ -339,5 +339,13 @@ Create a base shape layer that will be used as the base of your palette and acti
 Works on any shape.
 
 ![Create Monochrome Colour Palette](plugin previews/create monochrome palette.gif)
+
+----
+
+### Copy Hex Colour Value
+
+Copies the Hex colour value of the selected element to the clipboard.
+
+![Copy Hex Colour Value](plugin previews/copy hex colour value.gif)
 
 ----
