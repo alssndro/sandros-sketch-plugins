@@ -339,9 +339,9 @@ alessndro.colour = {
     var tints = [0.8, 0.4];
     var shades = [0.6, 0.3];
 
-    var red = [base_colour red] * 1;
-    var green = [base_colour green] * 1;
-    var blue = [base_colour blue] * 1;
+    var red = [base_colour red];
+    var green = [base_colour green];
+    var blue = [base_colour blue];
     var colour_alpha = [base_colour alpha];
 
     for (var i=0; i < tints.length; i++){
