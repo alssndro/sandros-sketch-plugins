@@ -331,52 +331,27 @@ alessndro.colour = {
       palette_layers.push(new_colour_layer);
     }
   },
-  // Creates and returns array of MSColor objects. Each subsequent colour has the 
-  // same hue/brightness/alpha, but the saturation is reduced by the amount passed
-  // to the function
+  // Creates and returns array of MSColor objects in a monochromatic colour scheme.
+  // Credit to https://github.com/brianpilati/color-palette-creator
   createMonochromePalette: function(base_colour, reduction) {
     var mono_palette = [base_colour];
 
-    var colour_in_hsb = [base_colour HSBColor];
+    var tints = [0.8, 0.4];
+    var shades = [0.6, 0.3];
 
-    // Monochrome palette, so these values stay the same
-    var colour_in_hsb_hue = [colour_in_hsb hueComponent];
-    var colour_in_hsb_brightnesss = [colour_in_hsb brightnessComponent];
-    var colour_in_hsb_alpha = [colour_in_hsb alphaComponent];
+    var red = [base_colour red] * 1;
+    var green = [base_colour green] * 1;
+    var blue = [base_colour blue] * 1;
+    var colour_alpha = [base_colour alpha];
 
-    for(var i = 0; i < 8; i++) {
-      var previous_colour = mono_palette[mono_palette.length -1];
-      var previous_colour_sat = [[previous_colour HSBColor] saturationComponent];
-
-      var lighter_sat = previous_colour_sat * reduction;
-
-      var new_colour = [MSColor colorWithHue:colour_in_hsb_hue saturation:lighter_sat brightness:colour_in_hsb_brightnesss alpha: colour_in_hsb_alpha];
-      var new_colour_hex = [new_colour hexValue];
-      mono_palette.push(new_colour);
+    for (var i=0; i < tints.length; i++){
+      mono_palette.push([MSColor colorWithRed: (red + (1-red) * tints[i]) green: (green + (1-green) * tints[i]) blue: (blue + (1-blue) * tints[i]) alpha: colour_alpha]);
     }
-    return mono_palette;
-  },
-  createMonochromePalette2: function(base_colour) {
-    var mono_palette = [base_colour];
 
-    var colour_in_hsb = [base_colour HSBColor];
-
-    // Monochrome palette, so these values stay the same
-    var colour_in_hsb_hue = [colour_in_hsb hueComponent];
-    var colour_in_hsb_brightnesss = [colour_in_hsb brightnessComponent];
-    var colour_in_hsb_alpha = [colour_in_hsb alphaComponent];
-
-    var saturation_values = [100,100,100,70,70];
-    var brightness_values = [100,80,50,100,50];
-
-    for(var i = 0; i < saturation_values.length; i++) {
-      var new_sat = saturation_values[i] /100;
-      var new_brightness = brightness_values[i] /100;
-      log(new_sat + " " + new_brightness);
-      var new_colour = [MSColor colorWithHue: colour_in_hsb_hue saturation:new_sat brightness: new_brightness alpha: colour_in_hsb_alpha];
-      log(new_colour);
-      mono_palette.push(new_colour);
+    for (var i=0; i < shades.length; i++){
+      mono_palette.push([MSColor colorWithRed: (red * shades[i]) green: (green * shades[i]) blue: (blue * shades[i]) alpha: colour_alpha]);
     }
+
     return mono_palette;
   }
 };
