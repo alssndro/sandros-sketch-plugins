@@ -92,9 +92,13 @@ alessndro.size = {
     var item_x2_pos = item_width + [[item frame] x];
     var nearest_column_index = grid.findNearestEndGridlineIndex(item);
 
-    var nearest_column = grid.columns[nearest_column_index - 1];
+    var nearest_column = grid.columns[nearest_column_index];
+
+    // Need to account for situations where the item is already aligned to a column,
+    // or the nearest column is actually AHEAD of the item's current position.
     if (nearest_column.end >= item_x2_pos) {
-      nearest_column = grid.columns[nearest_column_index - 2];
+      log("Nearest column is ahead")
+      nearest_column = grid.columns[nearest_column_index-1];
     }
 
     var new_width = nearest_column.end - [[item frame] x];
@@ -293,12 +297,6 @@ alessndro.type = {
 
       text_layers.push(new_text_layer);
     }
-
-    // Prints the scale (for debugging)
-    // for(var i = 0; i < text_layers.length; i++) {
-    //   var current_text_layer = text_layers[i]
-    //   log(i + ": " + [current_text_layer fontSize])
-    // }
   }
 };
 
@@ -497,10 +495,10 @@ alessndro.grid.HorizontalGrid.prototype.findNearestStartGridlineIndex = function
 alessndro.grid.HorizontalGrid.prototype.findNearestEndGridlineIndex = function(item) {
   var end_positions = this.columnEndsToArray();
 
-    // The x-coordinate of the item we want to find the closest gridline to
-  var item_x_pos = [[item frame] x] + [[item frame] width];
+  // The x-coordinate of the right edge of the item we want to find the closest gridline to
+  var item_x2_pos = [[item frame] x] + [[item frame] width];
 
-  return alessndro.utility.findNearestNeighbour(item_x_pos, end_positions);
+  return alessndro.utility.findNearestNeighbour(item_x2_pos, end_positions);
 };
 
 alessndro.grid.Column.prototype.toString = function() {

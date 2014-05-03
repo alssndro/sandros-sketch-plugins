@@ -117,11 +117,11 @@ Aligns the left edge of the selected elements to the next column.
 
 ----
 
-### Resize Column
+### Resize & Align to Column
 
-Resizes selected elements to fit the horizontal grid.
+Resizes and aligns selected elements to fit the horizontal grid.
 
-![Resize to Fit Columns](plugin previews/resize to column.gif)
+![Resize and Align to Fit Columns](plugin previews/resize to column.gif)
 
 ----
 
