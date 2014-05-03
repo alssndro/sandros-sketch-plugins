@@ -217,8 +217,16 @@ alessndro.alignment = {
   // Align the left edge of the passed in item to the nearest column gridline
   alignLeftEdgeToNearestGridline: function(grid, item) {
     var nearest_gridline_index = grid.findNearestStartGridlineIndex(item);
-    log(grid.columns[nearest_gridline_index].start);
     alessndro.alignment.moveToXPosition(item, grid.columns[nearest_gridline_index].start);
+  },
+  // Align the right edge of the passed in item to the nearest column gridline
+  alignRightEdgeToNearestGridline: function(grid, item) {
+    var nearest_gridline_index = grid.findNearestEndGridlineIndex(item);
+    var item_x2_pos = [[item frame] x] + [[item frame] width]
+
+    var position_offset = grid.columns[nearest_gridline_index].end - item_x2_pos
+
+    alessndro.alignment.moveToXPosition(item, [[item frame] x] + position_offset);
   },
   // Aligns the left edge of the passed in item to the next column gridline
   alignLeftEdgeToNextGridline: function(grid, item) {
@@ -230,10 +238,34 @@ alessndro.alignment = {
     // that the nearest column to the item is not the previous column (or the current column)
     // We choose the next-next column if so 
     if ((nearest_column.start < item_x_pos) || (nearest_column.start === item_x_pos)) {
+
+      // If we hit the last column, wrap around back to the first column and position the item there
       var next_column_index = (nearest_gridline_index + 1 > grid.columns.length-1) ? 0 : nearest_gridline_index + 1;
       alessndro.alignment.moveToXPosition(item, grid.columns[next_column_index].start);
     } else {
       alessndro.alignment.moveToXPosition(item, nearest_column.start);
+    }
+  },
+  // Aligns the right edge of the passed in item to the next column gridline
+  alignRightEdgeToNextGridline: function(grid, item) {
+    var nearest_gridline_index = grid.findNearestEndGridlineIndex(item);
+    var nearest_column = grid.columns[nearest_gridline_index];
+    var item_x2_pos = [[item frame] x] + [[item frame] width];
+
+    var position_offset = nearest_column.end - item_x2_pos
+
+    // Since we always want to move the item to the next column, need to check
+    // that the nearest column to the item is not the previous column (or the current column)
+    // We choose the next-next column if so 
+    if ((nearest_column.end < item_x2_pos) || (nearest_column.end === item_x2_pos)) {
+
+      // If we hit the last column, wrap around back to the first column and position the item there
+      var next_column_index = (nearest_gridline_index + 1 > grid.columns.length-1) ? 0 : nearest_gridline_index + 1;
+
+      position_offset = grid.columns[next_column_index].end - item_x2_pos
+      alessndro.alignment.moveToXPosition(item, [[item frame] x] + position_offset);
+    } else {
+      alessndro.alignment.moveToXPosition(item, [[item frame] x] + position_offset);
     }
   },
   // Aligns the left edge of the passed in item to the previous column gridline
@@ -246,12 +278,37 @@ alessndro.alignment = {
     // that the nearest column to the item is not the next column (or the current column)
     // We choose the previous-previous column if so 
     if ((nearest_column.start > item_x_pos) || (nearest_column.start === item_x_pos)) {
+      
+      // If the previous column is out of range, wrap back around to the last column and position the item there
       var previous_column_index = (nearest_gridline_index - 1 < 0) ? grid.columns.length - 1 : nearest_gridline_index -1;
       alessndro.alignment.moveToXPosition(item, grid.columns[previous_column_index].start);
     } else {
       alessndro.alignment.moveToXPosition(item, nearest_column.start);
     }
+  },
+  // Aligns the right edge of the passed in item to the previous column gridline
+  alignRightEdgeToPreviousGridline: function(grid, item) {
+    var nearest_gridline_index = grid.findNearestEndGridlineIndex(item);
+    var nearest_column = grid.columns[nearest_gridline_index];
+    var item_x2_pos = [[item frame] x] + [[item frame] width];
+
+    var position_offset = nearest_column.end - item_x2_pos
+
+    // Since we always want to move the item to the next column, need to check
+    // that the nearest column to the item is not the previous column (or the current column)
+    // We choose the next-next column if so 
+    if ((nearest_column.end > item_x2_pos) || (nearest_column.end === item_x2_pos)) {
+
+      // If the previous column is out of range, wrap back around to the last column and position the item there
+      var previous_column_index = (nearest_gridline_index - 1 < 0) ? grid.columns.length - 1 : nearest_gridline_index - 1;
+
+      position_offset = grid.columns[previous_column_index].end - item_x2_pos
+      alessndro.alignment.moveToXPosition(item, [[item frame] x] + position_offset);
+    } else {
+      alessndro.alignment.moveToXPosition(item, [[item frame] x] + position_offset);
+    }
   }
+
 };
 
 // Scales from http://modularscale.com/

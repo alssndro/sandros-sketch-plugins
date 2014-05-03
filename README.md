@@ -93,25 +93,31 @@ All plugins require the use of a columnal Layout Grid, created using ``View > Gr
 
 ----
 
-### Align Left Edge to Column
+### Align (Left | Right) Edge to Column
 
-Aligns the left edge of the selected elements to nearest column.
+Aligns the (left | right) edge of the selected elements to nearest column.
+
+(Align Left Edge to Column shown)
 
 ![Align Left Edge to Nearest Column](plugin previews/align left edge to column.gif)
 
 ----
 
-### Align Left Edge to Next Column
+### Align (Left | Right) Edge to Next Column
 
-Aligns the left edge of the selected elements to the next column.
+Aligns the (left | right) edge of the selected elements to the next column.
+
+(Align Left Edge to Next Column shown)
 
 ![Align Left Edge to Next Column](plugin previews/align left edge to next column.gif)
 
 ----
 
-### Align Left Edge to Previous Column
+### Align (Left | Right) Edge to Previous Column
 
-Aligns the left edge of the selected elements to the next column.
+Aligns the (left | right) edge of the selected elements to the previous column.
+
+(Align Left Edge to Previous Column shown)
 
 ![Align Left Edge to Previous Column](plugin previews/align left edge to previous column.gif)
 
