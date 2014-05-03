@@ -153,18 +153,17 @@ The easiest way to establish a Baseline Grid is to use the ``Draw Baseline Grid 
 The plugins are quite clever in that they will align/resize elements to the closest
 grid line.
 
-### Draw Baseline Grid Guides
+### Draw Baseline Grid Ruler Guides
 
-After entering the desired interval, the plugin will automatically draw vertical guides on the current
-Artboard, up to the height of the Artboard.
+After entering the desired interval, the plugin will automatically draw vertical Ruler guides on the current Artboard, up to the height of the Artboard. 
 
 ![Draw Baseline Grid Guides](plugin previews/draw baseline grid guides.gif)
 
 ----
 
-### Clear All Guides
+### Clear All Ruler Guides
 
-Clears all guides on the current Artboard.
+Clears all Ruler guides on the current Artboard.
 
 ![Clear All Guides](plugin previews/clear all guides.gif)
 

@@ -3,9 +3,9 @@ var alessndro = alessndro || {};
 
 alessndro.common = {
   processAllLayers: function(layers, callback) {
-    for (var i = 0; i < [layers length]; i++) {
-      var layer = layers[i];
-
+    for (var i = 0; i < [layers count]; i++) {
+      var layer = [layers objectAtIndex:i];
+      log(layer)
       if ([layer isMemberOfClass:[MSLayerGroup class]]) {
         callback(layer);
         // Also process child layers/groups
