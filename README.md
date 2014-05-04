@@ -199,7 +199,7 @@ Resizes currently selected elements to fit the Baseline Grid of the current Artb
 
 ### Expand to Baseline Grid
 
-Exapnds the currently selected elements by one Baseline Grid interval.
+Expands the currently selected elements by a single Baseline Grid interval.
 
 ![Expand to Baseline Grid](plugin previews/expand to baseline grid.gif)
 
@@ -207,7 +207,7 @@ Exapnds the currently selected elements by one Baseline Grid interval.
 
 ### Shrink to Baseline Grid
 
-Exapnds the currently selected elements by one Baseline Grid interval.
+Shrinks the currently selected elements by a single Baseline Grid interval.
 
 ![Shrink to Baseline Grid](plugin previews/shrink to baseline grid.gif)
 
