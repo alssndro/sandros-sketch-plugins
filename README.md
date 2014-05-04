@@ -197,6 +197,21 @@ Resizes currently selected elements to fit the Baseline Grid of the current Artb
 
 ----
 
+### Expand to Baseline Grid
+
+Exapnds the currently selected elements by one Baseline Grid interval.
+
+![Expand to Baseline Grid](plugin previews/expand to baseline grid.gif)
+
+----
+
+### Shrink to Baseline Grid
+
+Exapnds the currently selected elements by one Baseline Grid interval.
+
+![Shrink to Baseline Grid](plugin previews/shrink to baseline grid.gif)
+
+----
 For text layers it sets the line height to fit the Baseline grid instead.
 
 **This does not align the the text to the Baseline Grid (the gif is a bit deceptive). This is

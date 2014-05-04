@@ -82,7 +82,16 @@ alessndro.size = {
     var new_width = nearest_column.end - [[item frame] x];
 
     alessndro.size.resizeWidthTo(item, new_width);
-
+  },
+  expandToBaselineGrid: function(item) {
+    var item_height = [[item frame] height];
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    alessndro.size.resizeHeightTo(item, item_height + baseline_interval);
+  },
+  shrinkToBaselineGrid: function(item) {
+    var item_height = [[item frame] height];
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    alessndro.size.resizeHeightTo(item, item_height - baseline_interval);
   },
   shrinkToHorizontalGrid: function(item) {
     // First align to column
@@ -278,7 +287,7 @@ alessndro.alignment = {
     // that the nearest column to the item is not the next column (or the current column)
     // We choose the previous-previous column if so 
     if ((nearest_column.start > item_x_pos) || (nearest_column.start === item_x_pos)) {
-      
+
       // If the previous column is out of range, wrap back around to the last column and position the item there
       var previous_column_index = (nearest_gridline_index - 1 < 0) ? grid.columns.length - 1 : nearest_gridline_index -1;
       alessndro.alignment.moveToXPosition(item, grid.columns[previous_column_index].start);
