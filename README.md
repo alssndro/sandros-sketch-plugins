@@ -1,5 +1,7 @@
 # Sketch Plugins
 
+![Logo](logo.png)
+
 An assortment of Sketch Plugins aimed towards working with grids/layouts and typography.
 
 There are also some additional plugins for generating colour palettes.
