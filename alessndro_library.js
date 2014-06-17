@@ -166,6 +166,12 @@ alessndro.alignment = {
     var item_y_pos = [[item frame] y];
     var new_y_pos_coefficient = alessndro.common.calculateCoefficient(item_y_pos);
     var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    log("_____________________________________");
+    log("Baseline interval: " + baseline_interval);
+    log("Y Coefficient: " + new_y_pos_coefficient);
+    log("Current item y position: " + item_y_pos);
+    log("New y position: " + baseline_interval * new_y_pos_coefficient);
+
     alessndro.alignment.moveToYPosition(item, baseline_interval * new_y_pos_coefficient);
   },
   positionBottomOnBaseline: function(item) {
@@ -460,8 +466,8 @@ alessndro.grid = {
   // Represents a Sketch grid created using 'View > Grid Settings', not
   // ruler guides
   // Pass the MSDocument's grid to the contructor
-  HorizontalGrid: function(grid) {
-    this.grid = grid;
+  HorizontalGrid: function() {
+    this.grid = [[[doc currentPage] currentArtboard] layout];
     this.gutter_width = [grid gutterWidth];
     this.no_of_gutters = [grid totalNumberOfGutters];
     this.column_width = [grid columnWidth];
@@ -482,6 +488,7 @@ alessndro.grid.HorizontalGrid.prototype.toString = function() {
   for(i = 0; i < this.columns.length; i++) {
     grid_string += this.columns[i];
   }
+
   return grid_string += "Gutters?: " + this.hasGuttersOutside;
 };
 
