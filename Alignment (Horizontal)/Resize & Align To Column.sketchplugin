@@ -3,7 +3,7 @@
 
 #import 'alessndro_library.js'
 
-var grid = new alessndro.grid.HorizontalGrid([doc grid])
+var grid = new alessndro.grid.HorizontalGrid()
 
 if([selection count] != 0) {
   var loop = [selection objectEnumerator]

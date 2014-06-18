@@ -289,7 +289,9 @@ Aligns the bottom of the currently selected elements to the previous Baseline Gr
 
 ### Draw Grid as Guidelines (alpha)
 
-Draws Ruler guides that mimic the horizontal grid set using ``View > Grid Settings... > Layout Grid``.
+Draws Ruler guides that mimic the horizontal grid set using ``View > Grid Settings... > Layout Settings``.
+
+Note that the 'Total Width' entered in the Layout Setting dialog must match the width of your artboard for this plugin to work correctly.
 
 *There are known issues with certain grid settings, hence alpha status.*
 
