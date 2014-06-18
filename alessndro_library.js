@@ -466,7 +466,7 @@ alessndro.grid = {
   // Represents a Sketch grid created using 'View > Grid Settings', not
   // ruler guides
   // Pass the MSDocument's grid to the contructor
-  HorizontalGrid: function(grid) {
+  HorizontalGrid: function() {
     this.grid = [[[doc currentPage] currentArtboard] layout];
     this.gutter_width = this.grid.gutterWidth();
     this.no_of_gutters = this.grid.totalNumberOfGutters();
