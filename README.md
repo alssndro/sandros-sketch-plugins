@@ -43,7 +43,7 @@ Further instructions can be found on the official [Sketch Plugin help page](http
 All plugins are developed and tested in Sketch 3, however, the official Sketch Plugin documentation
 states that [the API is backwards compatible with Sketch 2.](http://bohemiancoding.com/sketch/support/developer/03-reference/00.html)
 
-NOTE: The [Horizontal Alignment plugins](#horizontal-alignment-alpha) will only work with Sketch 3 v3.0.3 and later, due to API changes that were made to the app regarding Layout Grids.
+NOTE: The [Horizontal Alignment plugins](#horizontal-alignment-alpha) will only work with Sketch 3.0.3 and later, due to API changes that were made to the app regarding Layout Grids.
 
 ## Avoiding Crashes
 
