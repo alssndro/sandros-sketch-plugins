@@ -9,7 +9,7 @@ There are also some additional plugins for generating colour palettes.
 - [Installation](#installation)
 - [Compatibility](#compatibility)
 - [Avoiding Crashes](#avoiding-crashes)
-- [Keyboard Shortucts](#how-do-i-use-a-plugin-as-a-keyboard-shortcut)
+- [Keyboard Shortcuts](#how-do-i-use-a-plugin-as-a-keyboard-shortcut)
 
 ## Plugin Previews
 - [Horizontal Alignment](#horizontal-alignment-alpha)
