@@ -2,9 +2,9 @@
 
 ![Logo](logo.png)
 
-An assortment of Sketch Plugins aimed towards working with horizontal/vertical grid layouts and typography.
+A library of Sketch Plugins aimed towards working with horizontal/vertical grid layouts and typography.
 
-There are also some additional plugins for generating colour palettes.
+There are also some additional plugins for generating typographic scales and generating colour palettes.
 
 - [Installation](#installation)
 - [Compatibility](#compatibility)
@@ -86,7 +86,7 @@ Simple descriptions of (most) plugins.
 
 ## Horizontal Alignment (alpha)
 
-All plugins require the use of a columnal Layout Grid, created using ``View > Grid Settings... > Layout Grid``.
+All plugins require the use of a columnar Layout Grid, created using ``View > Grid Settings... > Layout Grid``.
 
 ----
 
