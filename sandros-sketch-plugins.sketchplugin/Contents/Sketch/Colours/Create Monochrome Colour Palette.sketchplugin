@@ -1,7 +1,7 @@
 // Draws a monochrome colour palette on the artboard, based on the colour of
 // the currently selected layer
 
-#import 'alessndro_library.js'
+@import '../alessndro_library.js'
 
 if([selection count] != 0) {
   var base_colour_layer = selection[0]
@@ -9,7 +9,7 @@ if([selection count] != 0) {
   var mono_palette = alessndro.colour.createMonochromePalette(base_colour, 0.75)
 
   alessndro.colour.drawColourPalette(base_colour_layer, mono_palette)
-} 
+}
 else {
   var app = [NSApplication sharedApplication]
   [app displayDialog:"You need to select a coloured shape layer to base your palette off." withTitle:"Error"]
