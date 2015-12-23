@@ -1,0 +1,9 @@
+{
+  "name": "Sandro's Sketch Plugins",
+  "description": "A library of Sketch Plugins aimed towards working with horizontal/vertical grid layouts and typography",
+  "author": "Sandro",
+  "homepage": "https://github.com/alssndro/sandros-sketch-plugins",
+  "version": 1.0,
+  "identifier": "com.sandro.sandros-sketch-plugins",
+  "compatibleVersion": 3
+}
