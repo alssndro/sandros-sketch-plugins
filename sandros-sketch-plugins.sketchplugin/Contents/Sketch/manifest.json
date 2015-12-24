@@ -31,6 +31,16 @@
       "script": "element_actions/duplicate_element.cocoascript",
       "name": "Duplicate element",
       "identifier": "duplicate_element"
+    },
+    {
+      "script": "typography/draw_custom_typographic_scale.cocoascript",
+      "name": "Draw custom typographic scale",
+      "identifier": "draw_custom_typographic_scale"
+    },
+    {
+      "script": "typography/draw_typographic_scale.cocoascript",
+      "name": "Draw typographic scale",
+      "identifier": "draw_typographic_scale"
     }
   ],
   "menu": {
@@ -51,6 +61,14 @@
         "items":
           [
             "duplicate_element"
+          ]
+      },
+      {
+        "title": "Typography",
+        "items":
+          [
+            "draw_custom_typographic_scale",
+            "draw_typographic_scale"
           ]
       }
     ]
