@@ -27,6 +27,11 @@
       "name": "Create random colour palette (popular)",
       "identifier": "create_random_colour_palette_popular"
     },
+    {
+      "script": "element_actions/duplicate_element.cocoascript",
+      "name": "Duplicate element",
+      "identifier": "duplicate_element"
+    }
   ],
   "menu": {
     "title": "Sandro's Sketch Plugins",
@@ -39,6 +44,13 @@
             "create_monochrome_colour_palette",
             "create_random_colour_palette_random",
             "create_random_colour_palette_popular"
+          ]
+      },
+      {
+        "title": "Element actions",
+        "items":
+          [
+            "duplicate_element"
           ]
       }
     ]
