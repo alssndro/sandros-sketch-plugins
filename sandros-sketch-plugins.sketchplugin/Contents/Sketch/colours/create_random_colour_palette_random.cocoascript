@@ -1,0 +1,24 @@
+// Draws a completely random colour palette retrieved using the Colourlovers API
+// Requries a base shape layer to be selected
+
+@import '../alessndro_library.js'
+
+var onRun = function(context) {
+  var selection = context.selection;
+
+  if([selection count] != 0) {
+
+    // Use as first colour square
+    var base_colour_layer = selection[0]
+
+    var response = alessndro.network.makeRequest("http://www.colourlovers.com/api/palettes/random&format=json", "GET")
+
+    var palette = alessndro.colourlovers.createPaletteFromJSON(response)
+
+    alessndro.colour.drawColourPalette(base_colour_layer, palette)
+  }
+  else {
+    var app = [NSApplication sharedApplication]
+    [app displayDialog:"You must first create a base shape layer. Each colour in the palette have the same dimensions as this base layer." withTitle:"Error"]
+  }
+}

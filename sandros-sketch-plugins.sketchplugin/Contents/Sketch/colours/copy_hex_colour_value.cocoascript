@@ -1,0 +1,15 @@
+// Copies the selected element's colour value in Hex to the clipboard
+
+var onRun = function(context) {
+  var selection = context.selection;
+
+  if([selection count] != 0) {
+    var pasteboard = [NSPasteboard generalPasteboard];
+    [pasteboard clearContents];
+
+    var base_colour = [[[[[selection firstObject] style] fills] firstObject] color];
+    var hex_string = "#" + [base_colour hexValue];
+    var colour = [NSArray arrayWithObjects: hex_string];
+    [pasteboard writeObjects:colour];
+  }
+}

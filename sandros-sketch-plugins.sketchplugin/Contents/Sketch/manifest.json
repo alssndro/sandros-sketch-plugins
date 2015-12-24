@@ -5,5 +5,42 @@
   "homepage": "https://github.com/alssndro/sandros-sketch-plugins",
   "version": 1.0,
   "identifier": "com.sandro.sandros-sketch-plugins",
-  "compatibleVersion": 3
+  "compatibleVersion": 3,
+  "commands": [
+    {
+      "script": "colours/copy_hex_colour_value.cocoascript",
+      "name": "Copy hex colour value",
+      "identifier": "copy_hex_colour_value"
+    },
+    {
+      "script": "colours/create_monochrome_colour_palette.cocoascript",
+      "name": "Create monochrome colour palette",
+      "identifier": "create_monochrome_colour_palette"
+    },
+    {
+      "script": "colours/create_random_colour_palette_random.cocoascript",
+      "name": "Create random colour palette (random)",
+      "identifier": "create_random_colour_palette_random"
+    },
+    {
+      "script": "colours/create_random_colour_palette_popular.cocoascript",
+      "name": "Create random colour palette (popular)",
+      "identifier": "create_random_colour_palette_popular"
+    },
+  ],
+  "menu": {
+    "title": "Sandro's Sketch Plugins",
+    "items": [
+      {
+        "title": "Colours",
+        "items":
+          [
+            "copy_hex_colour_value",
+            "create_monochrome_colour_palette",
+            "create_random_colour_palette_random",
+            "create_random_colour_palette_popular"
+          ]
+      }
+    ]
+  }
 }

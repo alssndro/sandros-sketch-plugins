@@ -200,7 +200,7 @@ alessndro.alignment = {
     var item_y1_pos = [[item frame] y];
     var item_y2_pos = item_y1_pos + item_height;
     var baseline_interval = alessndro.common.getArtboardBaselineInterval();
-    
+
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
     var new_y_pos_coefficient = Math.floor(item_y2_pos / baseline_interval);
@@ -222,7 +222,7 @@ alessndro.alignment = {
     var item_y1_pos = [[item frame] y];
     var item_y2_pos = item_y1_pos + item_height;
     var baseline_interval = alessndro.common.getArtboardBaselineInterval();
-    
+
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
     var new_y_pos_coefficient = Math.floor(item_y2_pos / baseline_interval);
@@ -251,7 +251,7 @@ alessndro.alignment = {
 
     // Since we always want to move the item to the next column, need to check
     // that the nearest column to the item is not the previous column (or the current column)
-    // We choose the next-next column if so 
+    // We choose the next-next column if so
     if ((nearest_column.start < item_x_pos) || (nearest_column.start === item_x_pos)) {
 
       // If we hit the last column, wrap around back to the first column and position the item there
@@ -271,7 +271,7 @@ alessndro.alignment = {
 
     // Since we always want to move the item to the next column, need to check
     // that the nearest column to the item is not the previous column (or the current column)
-    // We choose the next-next column if so 
+    // We choose the next-next column if so
     if ((nearest_column.end < item_x2_pos) || (nearest_column.end === item_x2_pos)) {
 
       // If we hit the last column, wrap around back to the first column and position the item there
@@ -291,7 +291,7 @@ alessndro.alignment = {
 
     // Since we always want to move the item to the previous column, need to check
     // that the nearest column to the item is not the next column (or the current column)
-    // We choose the previous-previous column if so 
+    // We choose the previous-previous column if so
     if ((nearest_column.start > item_x_pos) || (nearest_column.start === item_x_pos)) {
 
       // If the previous column is out of range, wrap back around to the last column and position the item there
@@ -311,7 +311,7 @@ alessndro.alignment = {
 
     // Since we always want to move the item to the next column, need to check
     // that the nearest column to the item is not the previous column (or the current column)
-    // We choose the next-next column if so 
+    // We choose the next-next column if so
     if ((nearest_column.end > item_x2_pos) || (nearest_column.end === item_x2_pos)) {
 
       // If the previous column is out of range, wrap back around to the last column and position the item there
@@ -374,7 +374,8 @@ alessndro.type = {
 
 alessndro.colour = {
   createColourFromHex: function(hex_string, alpha_value) {
-    return [MSColor colorWithHex: "#" + hex_string alpha: alpha_value];
+    rgb = alessndro.colour.hexToRGB(hex_string);
+    return [MSColor colorWithRed: rgb.red green: rgb.green blue: rgb.blue alpha: alpha_value];
   },
   // Draws a palette on the artboard.
   // Pass in a base_layer which is used for sizing each colour element, and
@@ -393,13 +394,20 @@ alessndro.colour = {
 
       var new_colour = colours_array[i];
       [[[[new_colour_layer style] fills] firstObject] setColor: new_colour];
-
       var current_x_pos = [[new_colour_layer frame] x];
       var new_x_position = current_x_pos + [[new_colour_layer frame] width];
       alessndro.alignment.moveToXPosition(new_colour_layer, new_x_position);
 
       palette_layers.push(new_colour_layer);
     }
+  },
+  hexToRGB: function(hex) {
+    var red = parseInt(hex.substring(0,2), 16);
+    var green = parseInt(hex.substring(2,4), 16);
+    var blue = parseInt(hex.substring(4,6), 16);
+
+    var rgb = {red: red/256, green: green/256, blue: blue/256};
+    return rgb;
   },
   // Creates and returns array of MSColor objects in a monochromatic colour scheme.
   // Credit to https://github.com/brianpilati/color-palette-creator
@@ -443,12 +451,11 @@ alessndro.colourlovers = {
   // Creates and returns an array of MSColor objects based on a API JSON response
   // of hex values
   createPaletteFromJSON: function(json_response) {
-
     var parsed_response = JSON.parse(json_response);
     var no_of_palettes = parsed_response.length;
     var random_palette_index = Math.floor(Math.random() * no_of_palettes);
     var random_palette = parsed_response[random_palette_index];
-
+    log("===== ========================= PALETTE " + random_palette["colors"]);
     var colours = [];
     var palette_colour_list = random_palette["colors"];
 
@@ -492,7 +499,7 @@ alessndro.grid.HorizontalGrid.prototype.toString = function() {
   return grid_string += "Gutters?: " + this.hasGuttersOutside;
 };
 
-// Creates Column objects that together represent the horizontal 
+// Creates Column objects that together represent the horizontal
 // grid set using View > Grid Settings > Layout
 // Returns an array containing all Columns
 alessndro.grid.HorizontalGrid.prototype.convertSketchGridToColumns = function() {
@@ -554,7 +561,7 @@ alessndro.grid.HorizontalGrid.prototype.columnEndsToArray = function() {
 // 'Start' gridline is therefore the left edge
 alessndro.grid.HorizontalGrid.prototype.findNearestStartGridlineIndex = function(item) {
     var start_positions = this.columnStartsToArray();
-    
+
     // The x-coordinate of the item we want to find the closest gridline to
     var item_x_pos = [[item frame] x];
 
