@@ -41,6 +41,11 @@
       "script": "typography/draw_typographic_scale.cocoascript",
       "name": "Draw typographic scale",
       "identifier": "draw_typographic_scale"
+    },
+    {
+      "script": "grid/draw_grid_as_guidelines.cocoascript",
+      "name": "Draw grid as guidelines",
+      "identifier": "draw_grid_as_guidelines"
     }
   ],
   "menu": {
@@ -69,6 +74,13 @@
           [
             "draw_custom_typographic_scale",
             "draw_typographic_scale"
+          ]
+      },
+      {
+        "title": "Grid",
+        "items":
+          [
+            "draw_grid_as_guidelines"
           ]
       }
     ]
