@@ -1,0 +1,18 @@
+// Removes all guides on the current Artboard
+
+var onRun = function(context) {
+  var document = context.document;
+  var selection = context.selection;
+
+  var current_page = [document currentPage]
+  var currentArtboard = [current_page currentArtboard]
+
+  removeGuides([currentArtboard verticalRulerData])
+  removeGuides([currentArtboard horizontalRulerData])
+}
+
+function removeGuides(ruler) {
+  for(var i = [ruler numberOfGuides]; i > 0; i--) {
+    [ruler removeGuideAtIndex: 0]
+  }
+}

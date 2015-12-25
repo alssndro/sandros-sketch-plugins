@@ -1,0 +1,16 @@
+// Aligns the left edge of the selected item to the the previous column in the grid
+// Need to have a columnal Layout Sketch grid set using 'View > Grid Settings > Layout'
+
+@import '../alessndro_library.js'
+
+var grid = new alessndro.grid.HorizontalGrid()
+
+if([selection count] != 0) {
+  var loop = [selection objectEnumerator]
+  while (item = [loop nextObject]) {
+    alessndro.alignment.alignLeftEdgeToPreviousGridline(grid, item)
+  }
+}
+else {
+  alessndro.common.alert("Error", "Nothing selected to align")
+}

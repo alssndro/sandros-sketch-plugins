@@ -1,0 +1,8 @@
+// Draws horizontal guidelines that mirror the Sketch grid (created using 'View > Grid Settings')
+@import '../alessndro_library.js'
+
+var onRun = function(context) {
+  var document = context.document;
+  var grid = new alessndro.grid.HorizontalGrid(document);
+  grid.drawGridAsGuidelines(document);
+}

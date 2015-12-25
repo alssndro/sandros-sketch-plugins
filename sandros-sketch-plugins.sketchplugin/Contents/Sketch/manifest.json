@@ -1,0 +1,310 @@
+{
+  "name": "Sandro's Sketch Plugins",
+  "description": "A library of Sketch Plugins aimed towards working with horizontal/vertical grid layouts and typography",
+  "author": "Sandro",
+  "homepage": "https://github.com/alssndro/sandros-sketch-plugins",
+  "version": 1.0,
+  "identifier": "com.sandro.sandros-sketch-plugins",
+  "compatibleVersion": 3,
+  "commands": [
+    {
+      "script": "colours/copy_hex_colour_value.cocoascript",
+      "name": "Copy hex colour value",
+      "identifier": "copy_hex_colour_value",
+      "shortcut": ""
+    },
+    {
+      "script": "colours/create_monochrome_colour_palette.cocoascript",
+      "name": "Create monochrome colour palette",
+      "identifier": "create_monochrome_colour_palette",
+      "shortcut": ""
+    },
+    {
+      "script": "colours/create_random_colour_palette_random.cocoascript",
+      "name": "Create random colour palette (random)",
+      "identifier": "create_random_colour_palette_random",
+      "shortcut": ""
+    },
+    {
+      "script": "colours/create_random_colour_palette_popular.cocoascript",
+      "name": "Create random colour palette (popular)",
+      "identifier": "create_random_colour_palette_popular",
+      "shortcut": ""
+    },
+    {
+      "script": "element_actions/duplicate_element.cocoascript",
+      "name": "Duplicate element",
+      "identifier": "duplicate_element",
+      "shortcut": ""
+    },
+    {
+      "script": "typography/draw_custom_typographic_scale.cocoascript",
+      "name": "Draw custom typographic scale",
+      "identifier": "draw_custom_typographic_scale",
+      "shortcut": ""
+    },
+    {
+      "script": "typography/draw_typographic_scale.cocoascript",
+      "name": "Draw typographic scale",
+      "identifier": "draw_typographic_scale",
+      "shortcut": ""
+    },
+    {
+      "script": "grid/draw_grid_as_guidelines.cocoascript",
+      "name": "Draw grid as guidelines",
+      "identifier": "draw_grid_as_guidelines",
+      "shortcut": ""
+    },
+    {
+      "script": "layers/lock_all_layers_all_artboards_all_pages.cocoascript",
+      "name": "Lock all layers (all artboards, all pages)",
+      "identifier": "lock_all_layers_all_artboards_all_pages",
+      "shortcut": ""
+    },
+    {
+      "script": "layers/lock_all_layers_all_artboards_current_page.cocoascript",
+      "name": "Lock all layers (all artboards, current page)",
+      "identifier": "lock_all_layers_all_artboards_current_page",
+      "shortcut": ""
+    },
+    {
+      "script": "layers/select_layers_of_same_colour.cocoascript",
+      "name": "Select layers of same colour",
+      "identifier": "select_layers_of_same_colour",
+      "shortcut": ""
+    },
+    {
+      "script": "layers/toggle_lock_everything_all_artboards_all_pages.cocoascript",
+      "name": "Toggle lock eveything (all artboards, all pages)",
+      "identifier": "toggle_lock_everything_all_artboards_all_pages",
+      "shortcut": ""
+    },
+    {
+      "script": "layers/toggle_lock_everything_all_artboards_current_page.cocoascript",
+      "name": "Toggle lock eveything (all artboards, current page)",
+      "identifier": "toggle_lock_everything_all_artboards_current_page",
+      "shortcut": ""
+    },
+    {
+      "script": "layers/unlock_all_layers_all_artboards_all_pages.cocoascript",
+      "name": "Unlock all layers (all pages)",
+      "identifier": "unlock_all_layers_all_artboards_all_pages",
+      "shortcut": ""
+    },
+    {
+      "script": "layers/unlock_all_layers_all_artboards_current_page.cocoascript",
+      "name": "Unlock all layers (current page)",
+      "identifier": "unlock_all_layers_all_artboards_current_page",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/align_bottom_to_baseline_grid.cocoascript",
+      "name": "Align bottom to baseline grid",
+      "identifier": "align_bottom_to_baseline_grid",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/draw_baseline_grid_guides.cocoascript",
+      "name": "Draw baseline grid guides",
+      "identifier": "draw_baseline_grid_guides",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/align_bottom_to_next_baseline_grid_line.cocoascript",
+      "name": "Align bottom to next baseline grid",
+      "identifier": "align_bottom_to_next_baseline_grid_line",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/align_bottom_to_previous_baseline_grid_line.cocoascript",
+      "name": "Align bottom to previous baseline grid",
+      "identifier": "align_bottom_to_previous_baseline_grid_line",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/align_top_to_baseline_grid.cocoascript",
+      "name": "Align top to baseline grid",
+      "identifier": "align_top_to_baseline_grid",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/align_top_to_next_baseline_grid_line.cocoascript",
+      "name": "Align top to next baseline grid line",
+      "identifier": "align_top_to_next_baseline_grid_line",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/align_top_to_previous_baseline_grid_line.cocoascript",
+      "name": "Align top to previous baseline grid line",
+      "identifier": "align_top_to_previous_baseline_grid_line",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/clear_all_guides.cocoascript",
+      "name": "Clear all guides",
+      "identifier": "clear_all_guides",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/expand_to_baseline_grid.cocoascript",
+      "name": "Expand to baseline grid",
+      "identifier": "expand_to_baseline_grid",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/shrink_to_baseline_grid.cocoascript",
+      "name": "Shrink to baseline grid",
+      "identifier": "shrink_to_baseline_grid",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/resize_to_baseline_grid.cocoascript",
+      "name": "Resize to baseline grid",
+      "identifier": "resize_to_baseline_grid",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_vertical/resize_and_align_to_baseline_grid.cocoascript",
+      "name": "Resize and align to baseline grid",
+      "identifier": "resize_and_align_to_baseline_grid",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/align_left_edge_to_column.cocoascript",
+      "name": "Align left edge to column",
+      "identifier": "align_left_edge_to_column",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/align_left_edge_to_next_column.cocoascript",
+      "name": "Align left edge to next column",
+      "identifier": "align_left_edge_to_next_column",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/align_left_edge_to_previous_column.cocoascript",
+      "name": "Align left edge to previous column",
+      "identifier": "align_left_edge_to_previous_column",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/align_right_edge_to_column.cocoascript",
+      "name": "Align right edge to column",
+      "identifier": "align_right_edge_to_column",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/align_right_edge_to_next_column.cocoascript",
+      "name": "Align right edge to next column",
+      "identifier": "align_right_edge_to_next_column",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/align_right_edge_to_previous_column.cocoascript",
+      "name": "Align right edge to previous column",
+      "identifier": "align_right_edge_to_previous_column",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/expand_to_horizontal_grid.cocoascript",
+      "name": "Expand to horizontal grid",
+      "identifier": "expand_to_horizontal_grid",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/resize_and_align_to_column.cocoascript",
+      "name": "Resize and align to column",
+      "identifier": "resize_and_align_to_column",
+      "shortcut": ""
+    },
+    {
+      "script": "alignment_horizontal/shrink_to_horizontal_grid.cocoascript",
+      "name": "Shrink to horizontal grid",
+      "identifier": "shrink_to_horizontal_grid",
+      "shortcut": ""
+    },
+  ],
+  "menu": {
+    "title": "Sandro's Sketch Plugins",
+    "items": [
+      {
+        "title": "Alignment (Vertical)",
+        "items":
+          [
+            "align_bottom_to_baseline_grid",
+            "align_bottom_to_next_baseline_grid_line",
+            "align_bottom_to_previous_baseline_grid_line",
+            "align_top_to_baseline_grid",
+            "align_top_to_next_baseline_grid_line",
+            "align_top_to_previous_baseline_grid_line",
+            "clear_all_guides",
+            "draw_baseline_grid_guides",
+            "expand_to_baseline_grid",
+            "resize_and_align_to_baseline_grid",
+            "resize_to_baseline_grid",
+            "shrink_to_baseline_grid"
+          ]
+      },
+      {
+        "title": "Alignment (Horizontal)",
+        "items":
+          [
+          "align_left_edge_to_column",
+          "align_left_edge_to_next_column",
+          "align_left_edge_to_previous_column",
+          "align_right_edge_to_column",
+          "align_right_edge_to_next_column",
+          "align_right_edge_to_previous_column",
+          "expand_to_horizontal_grid",
+          "resize_and_align_to_column",
+          "shrink_to_horizontal_grid"
+          ]
+      },
+      {
+        "title": "Colours",
+        "items":
+          [
+            "copy_hex_colour_value",
+            "create_monochrome_colour_palette",
+            "create_random_colour_palette_random",
+            "create_random_colour_palette_popular"
+          ]
+      },
+      {
+        "title": "Element actions",
+        "items":
+          [
+            "duplicate_element"
+          ]
+      },
+      {
+        "title": "Typography",
+        "items":
+          [
+            "draw_custom_typographic_scale",
+            "draw_typographic_scale"
+          ]
+      },
+      {
+        "title": "Grid",
+        "items":
+          [
+            "draw_grid_as_guidelines"
+          ]
+      },
+      {
+        "title": "Layers",
+        "items":
+          [
+            "lock_all_layers_all_artboards_all_pages",
+            "lock_all_layers_all_artboards_current_page",
+            "select_layers_of_same_colour",
+            "toggle_lock_everything_all_artboards_all_pages",
+            "toggle_lock_everything_all_artboards_current_page",
+            "unlock_all_layers_all_artboards_all_pages",
+            "unlock_all_layers_all_artboards_current_page"
+          ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+// Align the right edge of the currently selected objects to the nearest column
+// Need to have a columnal Layout Sketch grid set using 'View > Grid Settings > Layout'
+
+@import '../alessndro_library.js'
+
+var onRun = function(context) {
+  var document = context.document;
+  var selection = context.selection;
+
+  var grid = new alessndro.grid.HorizontalGrid(document)
+
+  if([selection count] != 0) {
+    var loop = [selection objectEnumerator]
+    while (item = [loop nextObject]) {
+      alessndro.alignment.alignRightEdgeToNearestGridline(grid, item)
+    }
+  }
+  else {
+    alessndro.common.alert("Error", "Nothing selected to align")
+  }
+}
