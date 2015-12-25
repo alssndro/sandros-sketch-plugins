@@ -15,10 +15,9 @@ alessndro.common = {
       }
     }
   },
-  getArtboardBaselineInterval: function() {
-    var artboard_ruler = [[[doc currentPage] currentArtboard] verticalRulerData];
+  getArtboardBaselineInterval: function(document) {
+    var artboard_ruler = [[[document currentPage] currentArtboard] verticalRulerData];
     var baseline = [artboard_ruler guideAtIndex: 1] - [artboard_ruler guideAtIndex: 0];
-
     return [artboard_ruler guideAtIndex: 1];
   },
   // Calculates and returns the closest possible coefficient of the value
@@ -26,9 +25,9 @@ alessndro.common = {
   // e.g if current baseline grid's intervals are 20px, and
   // you pass 24, this function will return 1. If you pass 35,
   // it will return 2
-  calculateCoefficient: function(value) {
+  calculateCoefficient: function(document, value) {
     var coefficient;
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
     if (value % baseline_interval === 0) {
       coefficient = value / baseline_interval;
     }
@@ -70,7 +69,7 @@ alessndro.size = {
     var new_height = baseline_interval * new_height_coefficient;
     alessndro.size.resizeHeightTo(item, new_height);
   },
-  resizeToHorizontalGrid: function(item) {
+  resizeToHorizontalGrid: function(grid, item) {
     // First align to column
     alessndro.alignment.alignLeftEdgeToNearestGridline(grid, item);
 
@@ -92,7 +91,7 @@ alessndro.size = {
     var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
     alessndro.size.resizeHeightTo(item, item_height - baseline_interval);
   },
-  shrinkToHorizontalGrid: function(item) {
+  shrinkToHorizontalGrid: function(grid, item) {
     // First align to column
     alessndro.alignment.alignLeftEdgeToNearestGridline(grid, item);
 
@@ -117,7 +116,7 @@ alessndro.size = {
       log("Can't shrink");
     }
   },
-  expandToHorizontalGrid: function(item) {
+  expandToHorizontalGrid: function(grid, item) {
     // First align to column
     alessndro.alignment.alignLeftEdgeToNearestGridline(grid, item);
 
@@ -467,8 +466,8 @@ alessndro.grid = {
   // Represents a Sketch grid created using 'View > Grid Settings', not
   // ruler guides
   // Pass the MSDocument's grid to the contructor
-  HorizontalGrid: function() {
-    this.grid = [[[doc currentPage] currentArtboard] layout];
+  HorizontalGrid: function(document) {
+    this.grid = [[[document currentPage] currentArtboard] layout];
     this.gutter_width = this.grid.gutterWidth();
     this.no_of_gutters = this.grid.totalNumberOfGutters();
     this.column_width = this.grid.columnWidth();
@@ -519,8 +518,8 @@ alessndro.grid.HorizontalGrid.prototype.convertSketchGridToColumns = function() 
 };
 
 // Draws a guideline-equivalent of the horizontal grid set using View > Grid Settings > Layout
-alessndro.grid.HorizontalGrid.prototype.drawGridAsGuidelines = function() {
-  var ruler = [[[doc currentPage] currentArtboard] horizontalRulerData];
+alessndro.grid.HorizontalGrid.prototype.drawGridAsGuidelines = function(document) {
+  var ruler = [[[document currentPage] currentArtboard] horizontalRulerData];
 
   for(i = 0; i < this.columns.length; i++) {
     [ruler addGuideWithValue: this.columns[i].start];

@@ -142,11 +142,89 @@
       "script": "alignment_vertical/resize_and_align_to_baseline_grid.cocoascript",
       "name": "Resize and align to baseline grid",
       "identifier": "resize_and_align_to_baseline_grid",
-    }
+    },
+    {
+      "script": "alignment_horizontal/align_left_edge_to_column.cocoascript",
+      "name": "Align left edge to column",
+      "identifier": "align_left_edge_to_column",
+    },
+    {
+      "script": "alignment_horizontal/align_left_edge_to_next_column.cocoascript",
+      "name": "Align left edge to next column",
+      "identifier": "align_left_edge_to_next_column",
+    },
+    {
+      "script": "alignment_horizontal/align_left_edge_to_previous_column.cocoascript",
+      "name": "Align left edge to previous column",
+      "identifier": "align_left_edge_to_previous_column",
+    },
+    {
+      "script": "alignment_horizontal/align_right_edge_to_column.cocoascript",
+      "name": "Align right edge to column",
+      "identifier": "align_right_edge_to_column",
+    },
+    {
+      "script": "alignment_horizontal/align_right_edge_to_next_column.cocoascript",
+      "name": "Align right edge to next column",
+      "identifier": "align_right_edge_to_next_column",
+    },
+    {
+      "script": "alignment_horizontal/align_right_edge_to_previous_column.cocoascript",
+      "name": "Align right edge to previous column",
+      "identifier": "align_right_edge_to_previous_column",
+    },
+    {
+      "script": "alignment_horizontal/expand_to_horizontal_grid.cocoascript",
+      "name": "Expand to horizontal grid",
+      "identifier": "expand_to_horizontal_grid",
+    },
+    {
+      "script": "alignment_horizontal/resize_and_align_to_column.cocoascript",
+      "name": "Resize and align to column",
+      "identifier": "resize_and_align_to_column",
+    },
+    {
+      "script": "alignment_horizontal/shrink_to_horizontal_grid.cocoascript",
+      "name": "Shrink to horizontal grid",
+      "identifier": "shrink_to_horizontal_grid",
+    },
   ],
   "menu": {
     "title": "Sandro's Sketch Plugins",
     "items": [
+      {
+        "title": "Alignment (Vertical)",
+        "items":
+          [
+            "align_bottom_to_baseline_grid",
+            "align_bottom_to_next_baseline_grid_line",
+            "align_bottom_to_previous_baseline_grid_line",
+            "align_top_to_baseline_grid",
+            "align_top_to_next_baseline_grid_line",
+            "align_top_to_previous_baseline_grid_line",
+            "clear_all_guides",
+            "draw_baseline_grid_guides",
+            "expand_to_baseline_grid",
+            "resize_and_align_to_baseline_grid",
+            "resize_to_baseline_grid",
+            "shrink_to_baseline_grid"
+          ]
+      },
+      {
+        "title": "Alignment (Horizontal)",
+        "items":
+          [
+          "align_left_edge_to_column",
+          "align_left_edge_to_next_column",
+          "align_left_edge_to_previous_column",
+          "align_right_edge_to_column",
+          "align_right_edge_to_next_column",
+          "align_right_edge_to_previous_column",
+          "expand_to_horizontal_grid",
+          "resize_and_align_to_column",
+          "shrink_to_horizontal_grid"
+          ]
+      },
       {
         "title": "Colours",
         "items":
@@ -190,24 +268,6 @@
             "toggle_lock_everything_all_artboards_current_page",
             "unlock_all_layers_all_artboards_all_pages",
             "unlock_all_layers_all_artboards_current_page"
-          ]
-      },
-      {
-        "title": "Alignment (Vertical)",
-        "items":
-          [
-            "align_bottom_to_baseline_grid",
-            "align_bottom_to_next_baseline_grid_line",
-            "align_bottom_to_previous_baseline_grid_line",
-            "align_top_to_baseline_grid",
-            "align_top_to_next_baseline_grid_line",
-            "align_top_to_previous_baseline_grid_line",
-            "clear_all_guides",
-            "draw_baseline_grid_guides",
-            "expand_to_baseline_grid",
-            "resize_and_align_to_baseline_grid",
-            "resize_to_baseline_grid",
-            "shrink_to_baseline_grid"
           ]
       }
     ]
