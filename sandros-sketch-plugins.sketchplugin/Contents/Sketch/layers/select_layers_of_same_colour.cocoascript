@@ -1,0 +1,38 @@
+function onRun(context) {
+  var document = context.document;
+
+  var selectedLayer = context.selection.firstObject();
+  var layers = getAllLayersFromCurrentArtboard(document);
+  var targetColour = getObjectColour(selectedLayer);
+
+  selectLayersOfSameColour(document, layers, targetColour);
+}
+
+function selectLayersOfSameColour(document, layers, targetColour) {
+  deselectAllLayers(document);
+
+  for (var i = 0; i < layers.count(); i++) {
+    var currentLayer = layers.objectAtIndex(i);
+
+    if (getObjectColour(currentLayer) == targetColour) {
+      selectLayer(currentLayer);
+    }
+  }
+}
+
+function getAllLayersFromCurrentArtboard(document) {
+  return document.currentPage().currentArtboard().layers();
+}
+
+function getObjectColour(object) {
+  var colour = object.style().fills().firstObject().color().hexValue();
+  return colour;
+}
+
+function deselectAllLayers(document) {
+  document.currentPage().deselectAllLayers();
+}
+
+function selectLayer(layer) {
+  [layer select:true byExpandingSelection:true]
+}

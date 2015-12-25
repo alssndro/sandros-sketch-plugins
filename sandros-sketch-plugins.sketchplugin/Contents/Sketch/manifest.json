@@ -10,42 +10,78 @@
     {
       "script": "colours/copy_hex_colour_value.cocoascript",
       "name": "Copy hex colour value",
-      "identifier": "copy_hex_colour_value"
+      "identifier": "copy_hex_colour_value",
+      "shortcut": ""
     },
     {
       "script": "colours/create_monochrome_colour_palette.cocoascript",
       "name": "Create monochrome colour palette",
-      "identifier": "create_monochrome_colour_palette"
+      "identifier": "create_monochrome_colour_palette",
     },
     {
       "script": "colours/create_random_colour_palette_random.cocoascript",
       "name": "Create random colour palette (random)",
-      "identifier": "create_random_colour_palette_random"
+      "identifier": "create_random_colour_palette_random",
     },
     {
       "script": "colours/create_random_colour_palette_popular.cocoascript",
       "name": "Create random colour palette (popular)",
-      "identifier": "create_random_colour_palette_popular"
+      "identifier": "create_random_colour_palette_popular",
     },
     {
       "script": "element_actions/duplicate_element.cocoascript",
       "name": "Duplicate element",
-      "identifier": "duplicate_element"
+      "identifier": "duplicate_element",
     },
     {
       "script": "typography/draw_custom_typographic_scale.cocoascript",
       "name": "Draw custom typographic scale",
-      "identifier": "draw_custom_typographic_scale"
+      "identifier": "draw_custom_typographic_scale",
     },
     {
       "script": "typography/draw_typographic_scale.cocoascript",
       "name": "Draw typographic scale",
-      "identifier": "draw_typographic_scale"
+      "identifier": "draw_typographic_scale",
     },
     {
       "script": "grid/draw_grid_as_guidelines.cocoascript",
       "name": "Draw grid as guidelines",
-      "identifier": "draw_grid_as_guidelines"
+      "identifier": "draw_grid_as_guidelines",
+    },
+    {
+      "script": "layers/lock_all_layers_all_artboards_all_pages.cocoascript",
+      "name": "Lock all layers (all artboards, all pages)",
+      "identifier": "lock_all_layers_all_artboards_all_pages",
+    },
+    {
+      "script": "layers/lock_all_layers_all_artboards_current_page.cocoascript",
+      "name": "Lock all layers (all artboards, current page)",
+      "identifier": "lock_all_layers_all_artboards_current_page",
+    },
+    {
+      "script": "layers/select_layers_of_same_colour.cocoascript",
+      "name": "Select layers of same colour",
+      "identifier": "select_layers_of_same_colour",
+    },
+    {
+      "script": "layers/toggle_lock_everything_all_artboards_all_pages.cocoascript",
+      "name": "Toggle lock eveything (all artboards, all pages)",
+      "identifier": "toggle_lock_everything_all_artboards_all_pages",
+    },
+    {
+      "script": "layers/toggle_lock_everything_all_artboards_current_page.cocoascript",
+      "name": "Toggle lock eveything (all artboards, current page)",
+      "identifier": "toggle_lock_everything_all_artboards_current_page",
+    },
+    {
+      "script": "layers/unlock_all_layers_all_artboards_all_pages.cocoascript",
+      "name": "Unlock all layers (all pages)",
+      "identifier": "unlock_all_layers_all_artboards_all_pages",
+    },
+    {
+      "script": "layers/unlock_all_layers_all_artboards_current_page.cocoascript",
+      "name": "Unlock all layers (current page)",
+      "identifier": "unlock_all_layers_all_artboards_current_page",
     }
   ],
   "menu": {
@@ -81,6 +117,19 @@
         "items":
           [
             "draw_grid_as_guidelines"
+          ]
+      },
+      {
+        "title": "Layers",
+        "items":
+          [
+            "lock_all_layers_all_artboards_all_pages",
+            "lock_all_layers_all_artboards_current_page",
+            "select_layers_of_same_colour",
+            "toggle_lock_everything_all_artboards_all_pages",
+            "toggle_lock_everything_all_artboards_current_page",
+            "unlock_all_layers_all_artboards_all_pages",
+            "unlock_all_layers_all_artboards_current_page"
           ]
       }
     ]

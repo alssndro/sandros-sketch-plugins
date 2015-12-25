@@ -2,13 +2,17 @@
 
 @import '../alessndro_library.js'
 
-// Get all pages in the document
-var pages = [doc pages]
+var onRun = function(context) {
+  var document = context.document;
 
-var pages_loop = [pages objectEnumerator]
+  // Get all pages in the document
+  var pages = [document pages]
 
-while (page = [pages_loop nextObject]) {
-  unlockArtboards([page artboards])
+  var pages_loop = [pages objectEnumerator]
+
+  while (page = [pages_loop nextObject]) {
+    unlockArtboards([page artboards])
+  }
 }
 
 function unlockArtboards(artboards) {
@@ -18,7 +22,6 @@ function unlockArtboards(artboards) {
     toggleLayersLock([artboard layers])
   }
 }
-
 
 // Recursively traverses and unlocks a tree of layers, since layers can be nested
 // in groups

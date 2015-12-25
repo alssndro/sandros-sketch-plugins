@@ -1,17 +1,12 @@
-// Unlocks all layer groups/layers/slices on all artboards across all pages
+// Unlocks all layer groups/layers/slices on all artboards on the current page
 
 @import '../alessndro_library.js'
 
-// Get all pages in the document
-var pages = [doc pages]
+var onRun = function(context) {
+  var document = context.document;
 
-var pages_loop = [pages objectEnumerator]
+  var artboards = [document artboards]
 
-while (page = [pages_loop nextObject]) {
-  unlockArtboards([page artboards])
-}
-
-function unlockArtboards(artboards) {
   var artboards_loop = [artboards objectEnumerator]
 
   while (artboard = [artboards_loop nextObject]) {
