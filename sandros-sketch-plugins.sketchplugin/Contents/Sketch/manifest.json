@@ -82,6 +82,66 @@
       "script": "layers/unlock_all_layers_all_artboards_current_page.cocoascript",
       "name": "Unlock all layers (current page)",
       "identifier": "unlock_all_layers_all_artboards_current_page",
+    },
+    {
+      "script": "alignment_vertical/align_bottom_to_baseline_grid.cocoascript",
+      "name": "Align bottom to baseline grid",
+      "identifier": "align_bottom_to_baseline_grid",
+    },
+    {
+      "script": "alignment_vertical/draw_baseline_grid_guides.cocoascript",
+      "name": "Draw baseline grid guides",
+      "identifier": "draw_baseline_grid_guides",
+    },
+    {
+      "script": "alignment_vertical/align_bottom_to_next_baseline_grid_line.cocoascript",
+      "name": "Align bottom to next baseline grid",
+      "identifier": "align_bottom_to_next_baseline_grid_line",
+    },
+    {
+      "script": "alignment_vertical/align_bottom_to_previous_baseline_grid_line.cocoascript",
+      "name": "Align bottom to previous baseline grid",
+      "identifier": "align_bottom_to_previous_baseline_grid_line",
+    },
+    {
+      "script": "alignment_vertical/align_top_to_baseline_grid.cocoascript",
+      "name": "Align top to baseline grid",
+      "identifier": "align_top_to_baseline_grid",
+    },
+    {
+      "script": "alignment_vertical/align_top_to_next_baseline_grid_line.cocoascript",
+      "name": "Align top to next baseline grid line",
+      "identifier": "align_top_to_next_baseline_grid_line",
+    },
+    {
+      "script": "alignment_vertical/align_top_to_previous_baseline_grid_line.cocoascript",
+      "name": "Align top to previous baseline grid line",
+      "identifier": "align_top_to_previous_baseline_grid_line",
+    },
+    {
+      "script": "alignment_vertical/clear_all_guides.cocoascript",
+      "name": "Clear all guides",
+      "identifier": "clear_all_guides",
+    },
+    {
+      "script": "alignment_vertical/expand_to_baseline_grid.cocoascript",
+      "name": "Expand to baseline grid",
+      "identifier": "expand_to_baseline_grid",
+    },
+    {
+      "script": "alignment_vertical/shrink_to_baseline_grid.cocoascript",
+      "name": "Shrink to baseline grid",
+      "identifier": "shrink_to_baseline_grid",
+    },
+    {
+      "script": "alignment_vertical/resize_to_baseline_grid.cocoascript",
+      "name": "Resize to baseline grid",
+      "identifier": "resize_to_baseline_grid",
+    },
+    {
+      "script": "alignment_vertical/resize_and_align_to_baseline_grid.cocoascript",
+      "name": "Resize and align to baseline grid",
+      "identifier": "resize_and_align_to_baseline_grid",
     }
   ],
   "menu": {
@@ -130,6 +190,24 @@
             "toggle_lock_everything_all_artboards_current_page",
             "unlock_all_layers_all_artboards_all_pages",
             "unlock_all_layers_all_artboards_current_page"
+          ]
+      },
+      {
+        "title": "Alignment (Vertical)",
+        "items":
+          [
+            "align_bottom_to_baseline_grid",
+            "align_bottom_to_next_baseline_grid_line",
+            "align_bottom_to_previous_baseline_grid_line",
+            "align_top_to_baseline_grid",
+            "align_top_to_next_baseline_grid_line",
+            "align_top_to_previous_baseline_grid_line",
+            "clear_all_guides",
+            "draw_baseline_grid_guides",
+            "expand_to_baseline_grid",
+            "resize_and_align_to_baseline_grid",
+            "resize_to_baseline_grid",
+            "shrink_to_baseline_grid"
           ]
       }
     ]

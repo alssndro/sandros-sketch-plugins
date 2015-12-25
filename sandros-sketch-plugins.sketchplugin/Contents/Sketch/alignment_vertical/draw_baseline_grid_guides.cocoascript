@@ -1,0 +1,39 @@
+// Draws guides at given intervals, up to the height of the current artboard
+// Guides start at position 0
+
+var onRun = function(context) {
+  var document = context.document;
+
+  // Ask user for interval, defaulting to 20 if user presses cancel or enters nothing
+  var interval = [document askForUserInput:"Enter interval: " initialValue:""]
+
+  // Default value in case user entered nothing into input dialog
+  if ([interval length] == 0) {
+    interval = 20
+  }
+
+  interval = parseFloat(interval)
+
+  var current_page = [document currentPage]
+  var currentArtboard = [current_page currentArtboard]
+
+  removeGuides([currentArtboard verticalRulerData])
+
+  drawBaselineGrid(currentArtboard, interval)
+}
+
+function drawBaselineGrid(artboard, baseline) {
+  var artboard_height = [[artboard frame] height]
+  var no_of_guides = Math.floor(artboard_height / baseline)
+  var vertical_ruler = [artboard verticalRulerData]
+
+  for(var i = 0; i < artboard_height; i += baseline) {
+    [vertical_ruler addGuideWithValue: i]
+  }
+}
+
+function removeGuides(ruler) {
+  for(var i = [ruler numberOfGuides]; i > 0; i--) {
+    [ruler removeGuideAtIndex: 0]
+  }
+}

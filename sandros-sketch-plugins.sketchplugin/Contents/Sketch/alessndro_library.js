@@ -5,7 +5,6 @@ alessndro.common = {
   processAllLayers: function(layers, callback) {
     for (var i = 0; i < [layers count]; i++) {
       var layer = [layers objectAtIndex:i];
-      log(layer)
       if ([layer isMemberOfClass:[MSLayerGroup class]]) {
         callback(layer);
         // Also process child layers/groups
@@ -64,10 +63,10 @@ alessndro.size = {
     [[item frame] subtractWidth: current_width - 1];
     [[item frame] addWidth: new_width - 1];
   },
-  resizeToBaselineGrid: function(item) {
+  resizeToBaselineGrid: function(document, item) {
     var item_height = [[item frame] height];
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
-    var new_height_coefficient = alessndro.common.calculateCoefficient(item_height);
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
+    var new_height_coefficient = alessndro.common.calculateCoefficient(document, item_height);
     var new_height = baseline_interval * new_height_coefficient;
     alessndro.size.resizeHeightTo(item, new_height);
   },
@@ -83,14 +82,14 @@ alessndro.size = {
 
     alessndro.size.resizeWidthTo(item, new_width);
   },
-  expandToBaselineGrid: function(item) {
+  expandToBaselineGrid: function(document, item) {
     var item_height = [[item frame] height];
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
     alessndro.size.resizeHeightTo(item, item_height + baseline_interval);
   },
-  shrinkToBaselineGrid: function(item) {
+  shrinkToBaselineGrid: function(document, item) {
     var item_height = [[item frame] height];
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
     alessndro.size.resizeHeightTo(item, item_height - baseline_interval);
   },
   shrinkToHorizontalGrid: function(item) {
@@ -141,8 +140,8 @@ alessndro.size = {
 alessndro.text = {
   // Set a text layer's line spacing so that it aligns to the current baseline
   // grid
-  setLineSpacingToBaselineGrid: function(text_layer) {
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+  setLineSpacingToBaselineGrid: function(document, text_layer) {
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
     if ([text_layer fontSize] > baseline_interval) {
       [text_layer setLineSpacing: (Math.ceil([text_layer fontSize] / baseline_interval) * baseline_interval)];
     } else {
@@ -162,32 +161,27 @@ alessndro.alignment = {
     [[item frame] subtractY: current_y_pos - 1];
     [[item frame] addY: new_y_pos - 1];
   },
-  positionTopOnBaseline: function(item) {
+  positionTopOnBaseline: function(document, item) {
     var item_y_pos = [[item frame] y];
-    var new_y_pos_coefficient = alessndro.common.calculateCoefficient(item_y_pos);
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
-    log("_____________________________________");
-    log("Baseline interval: " + baseline_interval);
-    log("Y Coefficient: " + new_y_pos_coefficient);
-    log("Current item y position: " + item_y_pos);
-    log("New y position: " + baseline_interval * new_y_pos_coefficient);
+    var new_y_pos_coefficient = alessndro.common.calculateCoefficient(document, item_y_pos);
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
 
     alessndro.alignment.moveToYPosition(item, baseline_interval * new_y_pos_coefficient);
   },
-  positionBottomOnBaseline: function(item) {
+  positionBottomOnBaseline: function(document, item) {
     var item_height = [[item frame] height];
     var item_y1_pos = [[item frame] y];
     var item_y2_pos = item_y1_pos + item_height;
 
-    var new_y_pos_coefficient = alessndro.common.calculateCoefficient(item_y2_pos);
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var new_y_pos_coefficient = alessndro.common.calculateCoefficient(document, item_y2_pos);
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
     var new_y_pos = (new_y_pos_coefficient * baseline_interval) - item_height;
 
     alessndro.alignment.moveToYPosition(item, new_y_pos);
   },
-  positionTopOnNextBaseline: function(item) {
+  positionTopOnNextBaseline: function(document, item) {
     var item_y_pos = [[item frame] y];
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
 
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
@@ -195,11 +189,11 @@ alessndro.alignment = {
     var new_y_pos = (baseline_interval * new_y_pos_coefficient) + baseline_interval;
     alessndro.alignment.moveToYPosition(item, new_y_pos);
   },
-  positionBottomOnNextBaseline: function(item) {
+  positionBottomOnNextBaseline: function(document, item) {
     var item_height = [[item frame] height];
     var item_y1_pos = [[item frame] y];
     var item_y2_pos = item_y1_pos + item_height;
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
 
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
@@ -207,9 +201,9 @@ alessndro.alignment = {
     var new_y_pos = ((new_y_pos_coefficient * baseline_interval) - item_height) + baseline_interval;
     alessndro.alignment.moveToYPosition(item, new_y_pos);
   },
-  positionTopOnPreviousBaseline: function(item) {
+  positionTopOnPreviousBaseline: function(document, item) {
     var item_y_pos = [[item frame] y];
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
 
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
@@ -217,11 +211,11 @@ alessndro.alignment = {
     var new_y_pos = (baseline_interval * new_y_pos_coefficient) - baseline_interval;
     alessndro.alignment.moveToYPosition(item, new_y_pos);
   },
-  positionBottomOnPreviousBaseline: function(item) {
+  positionBottomOnPreviousBaseline: function(document, item) {
     var item_height = [[item frame] height];
     var item_y1_pos = [[item frame] y];
     var item_y2_pos = item_y1_pos + item_height;
-    var baseline_interval = alessndro.common.getArtboardBaselineInterval();
+    var baseline_interval = alessndro.common.getArtboardBaselineInterval(document);
 
     // Revert to the simpler method of calculating the coefficient since we don't
     // care which baseline the item is closer to as we always want to move it to the previous one
