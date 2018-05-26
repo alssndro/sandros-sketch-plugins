@@ -222,7 +222,7 @@
       "name": "Shrink to horizontal grid",
       "identifier": "shrink_to_horizontal_grid",
       "shortcut": ""
-    },
+    }
   ],
   "menu": {
     "title": "Sandro's Sketch Plugins",
